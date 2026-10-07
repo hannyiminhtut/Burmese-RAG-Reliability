@@ -151,7 +151,7 @@ If you find this benchmark or study useful in your research, please cite:
 
 ```bibtex
 @inproceedings{htut2026language,
-  author    = {Htut, Han Nyi Min and Zin, Thet Thet},
+  author    = {{Han Nyi Min Htut} and {Thet Thet Zin}},
   title     = {Language-Conditioned Abstention in Burmese-English RAG: Retrieval--Decision Divergence Across Query Languages},
   booktitle = {Proceedings of the 2026 International Conference on Advanced Information Technologies (ICAIT)},
   year      = {2026},
