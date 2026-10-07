@@ -1,0 +1,142 @@
+{
+  "run_id": "uit-ollama-pilot-v1.1-20260818-03",
+  "model": "gemma3:4b-it-q4_K_M",
+  "ollama_version": "0.32.13",
+  "base_url": "http://localhost:11434",
+  "prompt_version": "uit-context-only-json-v2",
+  "parser_version": "uit-citation-object-parser-v2",
+  "output_format": "explicit_json_schema",
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "decision": {
+        "type": "string",
+        "enum": [
+          "ANSWER",
+          "ABSTAIN"
+        ]
+      },
+      "answer": {
+        "type": "string"
+      },
+      "citations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "chunk_id": {
+              "type": "string"
+            },
+            "page": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "chunk_id",
+            "page"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "decision",
+      "answer",
+      "citations"
+    ],
+    "additionalProperties": false
+  },
+  "abstention_response": "The provided academic regulations do not contain sufficient information to answer the question.",
+  "settings": {
+    "temperature": 0,
+    "top_p": 0.9,
+    "top_k": 40,
+    "seed": 42,
+    "num_ctx": 8192,
+    "num_predict": 512
+  },
+  "created_at": "2026-08-18T15:19:37.454346Z",
+  "input_hashes": {
+    "config_sha256": "2be841e41e7cbe79f39f83f4d74e64236feb447f990a424b4e9bd7abde616b79",
+    "benchmark_sha256": "563e57d818306a042730d0562d50c813d1e0dfa00b9ca773db9145ceb11aecd7",
+    "pilot_intents_sha256": "a3437e7724ec6529be6ff4fb4a71e1154356f4ae48b8f2802c428ac8fdb12c0c",
+    "retrieval_results_sha256": "eb1853d8131564606f82c92edbfdb62b45242b72edb637847962700cbe0bcd87",
+    "metadata_sha256": "6f9d1eefa3d573b58e099203a97cae300e2dc2eefac79518f09cbe86ca28f582"
+  },
+  "development_question_count": 15,
+  "heldout_question_count": 0,
+  "output_paths": {
+    "jsonl": "D:\\Projects\\Burmese-RAG-Reliability\\results\\ollama_pilot\\uit-ollama-pilot-v1.1-20260818-03\\uit-ollama-pilot-v1.1-20260818-03.jsonl",
+    "csv_summary": "D:\\Projects\\Burmese-RAG-Reliability\\results\\ollama_pilot\\uit-ollama-pilot-v1.1-20260818-03\\uit-ollama-pilot-v1.1-20260818-03_summary.csv",
+    "manifest": "D:\\Projects\\Burmese-RAG-Reliability\\results\\ollama_pilot\\uit-ollama-pilot-v1.1-20260818-03\\uit-ollama-pilot-v1.1-20260818-03_manifest.json"
+  },
+  "status": "complete",
+  "checkpoint": {
+    "completed_records": 15,
+    "decisions": {
+      "ANSWER": 8,
+      "ABSTAIN": 7
+    },
+    "errors": {
+      "ValueError": 3
+    },
+    "by_language": {
+      "EN": {
+        "ANSWER": 2,
+        "ABSTAIN": 3
+      },
+      "MY": {
+        "ANSWER": 3,
+        "ABSTAIN": 2
+      },
+      "MIX": {
+        "ANSWER": 3,
+        "ABSTAIN": 2
+      }
+    },
+    "by_answerability": {
+      "answerable": {
+        "ANSWER": 8,
+        "ABSTAIN": 1
+      },
+      "unanswerable": {
+        "ABSTAIN": 6
+      }
+    }
+  },
+  "updated_at": "2026-08-18T15:32:36.490679Z",
+  "completed_at": "2026-08-18T15:32:36.493335Z",
+  "pilot_summary": {
+    "completed_records": 15,
+    "decisions": {
+      "ANSWER": 8,
+      "ABSTAIN": 7
+    },
+    "errors": {
+      "ValueError": 3
+    },
+    "by_language": {
+      "EN": {
+        "ANSWER": 2,
+        "ABSTAIN": 3
+      },
+      "MY": {
+        "ANSWER": 3,
+        "ABSTAIN": 2
+      },
+      "MIX": {
+        "ANSWER": 3,
+        "ABSTAIN": 2
+      }
+    },
+    "by_answerability": {
+      "answerable": {
+        "ANSWER": 8,
+        "ABSTAIN": 1
+      },
+      "unanswerable": {
+        "ABSTAIN": 6
+      }
+    }
+  }
+}

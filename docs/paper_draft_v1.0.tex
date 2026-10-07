@@ -1,0 +1,356 @@
+% ICAIT 2026 / IEEE-style LaTeX conversion of paper_draft_v1.0.md
+% Compile from the docs directory with:
+%   latexmk -pdf -shell-escape paper_draft_v1.0.tex
+% The svg package requires Inkscape for automatic SVG-to-PDF conversion.
+\documentclass[a4paper,conference]{IEEEtran}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{newtxtext,newtxmath}
+\usepackage{microtype}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{svg}
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{balance}
+
+\svgpath{{./}{../results/publication_assets_v1.0/figures/}}
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+
+\title{Language-Conditioned Abstention in Burmese-English RAG: Retrieval–Decision Divergence Across Query Languages}
+
+\author{%
+\IEEEauthorblockN{Han Nyi Min Htut}
+\IEEEauthorblockA{%
+University of Information Technology\\
+Yangon, Myanmar\\
+\href{mailto:hannyiminhtut@uit.edu.mm}{hannyiminhtut@uit.edu.mm}}
+\and
+\IEEEauthorblockN{Thet Thet Zin}
+\IEEEauthorblockA{%
+University of Information Technology\\
+Yangon, Myanmar\\
+\href{mailto:thetthetzin@uit.edu.mm}{thetthetzin@uit.edu.mm}}
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Retrieval-augmented generation (RAG) systems used for university regulations must answer supported questions while abstaining when evidence is unavailable. This work presents a controlled evaluation of a local RAG pipeline over a frozen University of Information Technology academic-regulation corpus under English (EN), Burmese (MY), and Burmese-English code-mixed (MIX) queries. The benchmark contains 79 semantic intents and 237 variants, of which 222 variants are held out. Retrieval uses \code{intfloat/multilingual-e5-small} embeddings and normalized FAISS inner-product search, with the top five chunks supplied to \code{gemma3:4b-it-q4_K_M}. On 180 answerable held-out variants, overall Hit@5 was 87.22\%. Structured answer-versus-abstain decision accuracy was 73.42\%; MY accuracy was 60.81\%, compared with 79.73\% for both EN and MIX. The main language-conditioned issue was false abstention, which reached 45.00\% for MY versus 20.00\% for EN and 16.67\% for MIX. Retrieval Hit@$k$ differences were not statistically significant, while the decision difference was significant ($p=0.0050$). The output contract was valid for 95.50\% of records. Implementation contributions include paired multilingual evaluation, chunk--page-bound citation validation, failure-preserving checkpointing, and a CPU-safe local execution profile. Because qualified independent semantic reviewers were unavailable, semantic answer correctness, groundedness, hallucination, and claim-level citation support were not evaluated.
+\end{abstract}
+
+\begin{IEEEkeywords}
+retrieval-augmented generation, Burmese, code mixing, abstention, university regulations, multilingual retrieval, reliability
+\end{IEEEkeywords}
+
+\section{Introduction}
+Academic-credit rules affect registration, examinations, progression, and graduation. Students often need to locate a specific rule rather than read an entire regulation document. A RAG interface can make that search easier, provided that its answers remain tied to the institutional source. Retrieval alone is not enough: the system must also judge whether the retrieved text supports an answer, decline unsupported questions, respond in an appropriate language, and identify the evidence used.
+
+The UIT source is written mainly in Burmese but regularly uses English academic terms. Student questions may therefore appear in English, in Burmese, or in a mixture of both. These surface forms can produce different embedding matches and different generator decisions even when the requested fact is unchanged. Reporting only an overall score would hide such cases. Instead, the three language forms are compared within each underlying information need.
+
+This study examines a frozen local RAG configuration for UIT academic regulations. Retrieval, the structured answer-or-abstain decision, and output-contract validation are reported separately. The study asks:
+\begin{enumerate}
+    \item How effectively does the frozen multilingual retriever return gold-page evidence for answerable EN, MY, and MIX questions?
+    \item How accurately does the generator choose \code{ANSWER} or \code{ABSTAIN} across the three language conditions?
+    \item Which reproducible structural failure patterns account for observed language-condition differences?
+\end{enumerate}
+
+The resulting contribution is a frozen university-domain benchmark, a locally reproducible retrieval and generation pipeline, and a paired analysis of EN, MY, and MIX variants. The implementation also records the chunk--page relationship used by each citation, saves every completed record, and retains validation and infrastructure failures in the analysis. We present this as a focused Burmese RAG reliability study rather than a priority claim.
+
+\section{Related Work}
+RAG couples a parametric generator with evidence retrieved from an external collection~\cite{lewis2020rag}. A single end-to-end score can conceal where an error occurred, so prior evaluation work separates retrieval quality, use of context, and generated output~\cite{es2024ragas}. Following this approach, page retrieval, the structured \code{ANSWER}/\code{ABSTAIN} decision, and output-contract validity are reported as separate outcomes.
+
+The retriever uses multilingual E5, a model family that provides small, base, and large multilingual text encoders ~\cite{wang2024e5}. Language condition can still influence both stages of a multilingual RAG pipeline. Code mixing may help cross-lingual alignment in one case while weakening direct query--passage matching in another~\cite{do2024contrastivemix}. Retriever and generator language preferences can also differ, so better retrieval does not guarantee better generation~\cite{park2025language}. Consequently, the comparison uses EN, MY, and MIX versions of the same intent. The cited work motivates the comparison but does not predict which condition should perform best for Burmese.
+
+Recent work treats abstention as a measurable LLM behavior rather than as a miscellaneous generation error~\cite{wen2025limits}. Selective abstention has also been proposed for cases in which available knowledge is insufficient or misaligned~\cite{huang2025abstention}. We do not train or calibrate a new abstention mechanism. Instead, we compare the frozen generator's \code{ANSWER}/\code{ABSTAIN} field with the benchmark answerability label.
+
+Detecting hallucination and incomplete evidence coverage requires semantic judgement~\cite{chang2024hallucination}. A citation that passes a format check cannot provide that judgement, so citation validity is used here only as a structural measure.
+
+Burmese has limited coverage in broad NLP evaluation, although newer benchmarks now examine Burmese understanding, reasoning, and generation more systematically~\cite{aung2026burmesesan}. Retrieval augmentation has been used to support cross-lingual transfer in low-resource settings~\cite{nie2023parc}, and Bangla RAG work shows the value of testing language-specific retrieval strategies~\cite{ipa2025trase}. Together, these studies argue against assuming that an English result transfers unchanged to Burmese. Domain-specific university QA provides a related example of grounding responses in a bounded institutional collection~\cite{sun2024universityrag}.
+
+\section{Dataset and Scope}
+\subsection{Source Corpus}
+The source is UIT's 24-page \emph{Undergraduate Academic Regulations (4 Years Program)}, dated June 2025 and archived as \code{UIT-SRC-025}~\cite{uit2025regulations}. It is written in Burmese and retains English academic terminology. Page 1 is the title page, and pages 2--3 are the table of contents. These pages were retained in the archived source but excluded from the index because they contain no operative rules and repeat section wording that could create duplicate lexical matches. The regulations begin on page 4. Corpus version \code{UIT-AC-v1.1} contains 148 retrieval chunks from pages 4--24. The text, chunk IDs, page metadata, and hashes were frozen before held-out generation.
+
+This corpus covers one official document, not the full UIT website. The results therefore concern the indexed academic-credit rules and should not be read as coverage of every UIT regulation or announcement.
+
+\subsection{Benchmark}
+The benchmark contains 79 semantic intents, each represented by EN, MY, and MIX variants, for 237 questions in total. There are 189 answerable and 48 unanswerable variants. Five semantic intents (\code{Q002}, \code{Q008}, \code{Q024}, \code{Q029}, and \code{Q057}) were frozen as development data, producing 15 development variants: 9 answerable and 6 unanswerable.
+
+The benchmark was constructed around information needs rather than isolated question strings. For an answerable intent, the record includes a gold answer, source ID, page, and regulation section. An unanswerable intent requests information that is absent from the frozen document; it has no gold-evidence page and expects \code{ABSTAIN}. Each intent was represented by one EN, one MY, and one MIX variant while keeping the requested fact and answerability label fixed. Automated checks then confirmed unique variant IDs, one complete language triplet per intent, consistent labels within each triplet, and complete evidence fields for answerable records. Table~\ref{tab:benchmark-construction} lists these controls.
+
+All remaining 74 intents form the held-out test set. The test set contains 222 variants: 180 answerable, 42 unanswerable, and exactly 74 variants per language condition. No development record was included in held-out retrieval, generation, statistics, or error analysis.
+
+\begin{table}[t]
+\caption{Dataset and Split Summary}
+\label{tab:dataset}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{|l|r|r|r|r|r|}
+\hline
+Split & Intents & Variants & Ans. & Unans. & EN/MY/MIX \\
+\hline
+Development & 5 & 15 & 9 & 6 & 5/5/5 \\
+\hline
+Held-out & 74 & 222 & 180 & 42 & 74/74/74 \\
+\hline
+Total & 79 & 237 & 189 & 48 & 79/79/79 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\caption{Benchmark Construction and Integrity Controls}
+\label{tab:benchmark-construction}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{|p{0.29\columnwidth}|p{0.61\columnwidth}|}
+\hline
+Component & Recorded or verified information \\
+\hline
+Intent unit & One underlying university-regulation information need \\
+\hline
+Answerable & Gold answer, source ID, page, and regulation section \\
+\hline
+Unanswerable & Absence from frozen source; expected \code{ABSTAIN} \\
+\hline
+Language pairing & Exactly one EN, MY, and MIX variant per intent \\
+\hline
+Integrity checks & Unique IDs, shared label, complete evidence metadata \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Methodology}
+\subsection{Retrieval}
+Chunk text is embedded with \code{intfloat/multilingual-e5-small} using the E5 passage prefix \code{passage: }. Queries use the prefix \code{query: }. Vectors are normalized to \code{float32}, and cosine similarity is implemented through inner-product search using FAISS \code{IndexFlatIP}. The retriever returns exactly five chunks per question.
+
+Gold evidence is represented as pages. A retrieved chunk is counted as relevant when any page in its metadata page list intersects the parsed gold-evidence pages. Hit@1, Hit@3, Hit@5, and mean reciprocal rank (MRR) are calculated only for answerable questions. Unanswerable rows retain retrieval scores and Top-5 evidence but do not receive Hit or MRR values.
+
+\subsection{Generation}
+Generation uses the local Ollama model \code{gemma3:4b-it-q4_K_M} with prompt version \code{uit-context-only-json-v3} and parser version \code{uit-citation-object-parser-v3}. The CPU-safe resource profile uses \code{num_ctx=4096}, \code{num_predict=512}, temperature 0, \code{top_p=0.9}, \code{top_k=40}, and seed 42. Requests are sequential, with \code{OLLAMA_NUM_PARALLEL=1} and \code{OLLAMA_MAX_LOADED_MODELS=1}.
+
+Each prompt contains the frozen question and the exact retrieved Top-5 chunks. Evidence blocks explicitly bind a chunk identifier to its page list. The structured output must contain a decision (\code{ANSWER} or \code{ABSTAIN}), an answer, and citations. \code{ANSWER} requires at least one citation that matches a supplied chunk-page pair. \code{ABSTAIN} requires no citation and is separately checked against the deterministic English abstention response. Each completed record is checkpointed immediately. Transient infrastructure failures may receive one bounded retry; parsing, citation, semantic, and output-validation failures are not retried.
+
+\subsection{Evaluation Boundaries}
+The frozen answerability label determines the expected structured decision: \code{ANSWER} for answerable variants and \code{ABSTAIN} for unanswerable variants. Treating \code{ABSTAIN} as the positive decision, the analysis reports accuracy, abstention precision, recall, and F1.
+
+The held-out analysis is restricted to automated retrieval, decision, contract, and infrastructure measures. Semantic answer assessment was not conducted and is addressed as a study limitation in Section~\ref{sec:limitations}.
+
+\subsection{Metrics and Statistical Analysis}
+The principal percentages are calculated as
+\begin{equation}
+\operatorname{Rate}(\%)=100\frac{x}{n},
+\label{eq:percentage}
+\end{equation}
+where $x$ is the observed count and $n$ is the relevant population. For answerable question $i$, let $G_i$ be its gold-page set and $R_i^{(k)}$ the pages returned in the first $k$ ranks. The main retrieval measures are
+\begin{align}
+\operatorname{Hit@}k & =\frac{1}{N_A}\sum_{i=1}^{N_A}
+\mathbb{I}\!\left(G_i\cap R_i^{(k)}\neq\varnothing\right),
+\label{eq:hitk}\\
+\operatorname{MRR} & =\frac{1}{N_A}\sum_{i=1}^{N_A}\frac{1}{r_i},
+\label{eq:mrr}
+\end{align}
+where $N_A=180$, $r_i$ is the rank of the first relevant chunk, and $1/r_i$ is defined as zero when no relevant chunk occurs in the evaluated Top-5.
+
+Treating \code{ABSTAIN} as the positive class, the decision measures are
+\begin{align}
+\operatorname{Accuracy} & =\frac{TP+TN}{TP+TN+FP+FN},\\
+P_A & =\frac{TP}{TP+FP},\quad
+R_A=\frac{TP}{TP+FN},\quad
+F_1=\frac{2P_AR_A}{P_A+R_A}.
+\label{eq:decision-metrics}
+\end{align}
+Here, $TP$ is a correct abstention, $FP$ is a false abstention, $TN$ is a correct answer decision, and $FN$ is a false answer. Table~\ref{tab:confusion}, for example, gives accuracy $(131+32)/222=73.42\%$.
+
+EN, MY, and MIX variants of an intent are paired. With $C_j$ denoting the total successes in language condition $j$, $R_i$ the total successes for intent $i$, $T=\sum_jC_j$, and $k=3$ conditions, Cochran's omnibus statistic is
+\begin{equation}
+Q=\frac{(k-1)\left[k\sum_{j=1}^{k}C_j^2-T^2\right]}
+{kT-\sum_{i=1}^{N}R_i^2},
+\label{eq:cochran-q}
+\end{equation}
+which is compared with $\chi^2_{k-1}$. For decision correctness, $(C_{EN},C_{MY},C_{MIX})=(59,45,59)$, $T=163$, and $\sum_iR_i^2=415$, giving
+\begin{equation}
+Q=\frac{2[3(59^2+45^2+59^2)-163^2]}{3(163)-415}
+=10.595,
+\end{equation}
+with two degrees of freedom and $p=0.0050$.
+
+When $Q$ is significant, two-sided exact McNemar tests compare the discordant counts $b$ and $c$ for each language pair under $B\sim\operatorname{Binomial}(b+c,0.5)$. For EN versus MY, $b=21$ and $c=7$, giving raw $p=0.0125$ and Holm-adjusted $p=0.0376$. Holm adjustment controls the three pairwise comparisons, and 95\% Wilson intervals quantify uncertainty around proportions. The family-wise threshold is $0.05$. The paired retrieval and false-abstention population contains 60 answerable intents per condition; the false-answer population contains 14 unanswerable intents per condition.
+
+\section{Implementation Challenges and Design Innovations}
+\subsection{Multilingual Evidence Alignment}
+The corpus contains Burmese text together with English terms such as \emph{credit}, \emph{semester}, and \emph{registration}. During development, different chunk rankings were sometimes produced for the EN, MY, and MIX versions of the same question. To support consistent evaluation, the three language variants were grouped by intent, and each chunk was assigned a stable ID and page list. A match with a gold page was counted only as a retrieval hit and was not treated as evidence that the generated answer was correct.
+
+\subsection{Structured Output and Citation Control}
+Early outputs sometimes contained invalid page values, citation objects copied from the example schema, or additional text following an \code{ABSTAIN} response. To address these issues, each chunk was provided with its page list, and the model was required to return a fixed JSON object. A citation was accepted only when its page number belonged to the cited chunk. The parser converted page values written entirely as digits but left other invalid values unchanged. Failed records preserved the original response and the stage at which validation failed.
+
+\subsection{Resource-Constrained Local Execution}
+Generation on the CPU was slow, and the Ollama runner occasionally stopped because of memory limitations. Therefore, execution was restricted to one request and one loaded model at a time, with fixed context and output limits. Each record was saved before processing the next request. Temporary infrastructure failures were retried once, while parsing, citation, and validation failures were retained without regeneration. This approach allowed interrupted runs to continue without overwriting failed records.
+
+\section{Results}
+\subsection{Retrieval Performance}
+\begin{table}[t]
+\caption{Retrieval Performance on Answerable Held-Out Variants}
+\label{tab:retrieval}
+\centering
+\footnotesize
+\begin{tabular}{|l|r|r|r|r|}
+\hline
+Language & Hit@1 & Hit@3 & Hit@5 & MRR \\
+\hline
+Overall & 52.78\% & 77.22\% & 87.22\% & 0.6577 \\
+\hline
+EN      & 51.67\% & 75.00\% & 86.67\% & 0.6444 \\
+\hline
+MY      & 46.67\% & 75.00\% & 81.67\% & 0.6039 \\
+\hline
+MIX     & 60.00\% & 81.67\% & 93.33\% & 0.7247 \\
+\hline
+\end{tabular}
+\end{table}
+
+MIX had the highest observed retrieval values and MY the lowest. However, none of the paired Hit@$k$ comparisons was statistically significant; even the closest result, Hit@5, had $p=0.0990$. Complete retrieval values are reported in Table~\ref{tab:retrieval} and Fig.~\ref{fig:retrieval-language}.
+
+\begin{figure}[t]
+\centering
+\includesvg[width=\columnwidth,inkscapelatex=false]{figure2_retrieval_by_language}
+\caption{Retrieval performance by language. Metrics use 180 answerable variants, 60 per language. Gold-page Hit@$k$ is a page-intersection measure, not proof of semantic evidence sufficiency.}
+\label{fig:retrieval-language}
+\end{figure}
+
+\subsection{Structured Decision Performance}
+The generator produced 141 \code{ANSWER} and 81 \code{ABSTAIN} decisions. Table~\ref{tab:confusion} shows the confusion matrix.
+
+\begin{table}[t]
+\caption{Frozen Label Versus Structured Decision}
+\label{tab:confusion}
+\centering
+\footnotesize
+\begin{tabular}{|l|r|r|}
+\hline
+Frozen label & ANSWER & ABSTAIN \\
+\hline
+Answerable   & 131 & 49 \\
+\hline
+Unanswerable & 10  & 32 \\
+\hline
+\end{tabular}
+\end{table}
+
+Decision accuracy was 163/222 (73.42\%). Abstention precision was 32/81 (39.51\%), recall was 32/42 (76.19\%), and F1 was 52.03\%. The gap between precision and recall shows that the system detected most unanswerable variants but also rejected many answerable variants.
+
+Language-specific decision accuracy was 79.73\% for both EN and MIX but 60.81\% for MY. Cochran's Q confirmed a language-condition difference ($Q(2)=10.595$, $p=0.0050$); Holm-adjusted pairwise tests isolated MY as significantly lower than both EN and MIX. Figure~\ref{fig:decision-accuracy} reports the estimates and 95\% Wilson intervals.
+
+\begin{figure}[t]
+\centering
+\includesvg[width=\columnwidth,inkscapelatex=false]{figure3_decision_accuracy_ci}
+\caption{Structured decision accuracy with 95\% Wilson confidence intervals. Accuracy concerns the \code{ANSWER}/\code{ABSTAIN} decision, not semantic answer correctness.}
+\label{fig:decision-accuracy}
+\end{figure}
+
+\subsection{False Abstention and False Answer}
+Among the 60 answerable intents per condition, false-abstention rates were 20.00\% for EN, 45.00\% for MY, and 16.67\% for MIX. The paired difference was significant ($Q(2)=16.188$, $p=0.00031$). Holm-adjusted exact McNemar tests showed higher MY false abstention than EN ($p_{\mathrm{adj}}=0.01185$) and MIX ($p_{\mathrm{adj}}=0.00146$); EN and MIX did not differ ($p_{\mathrm{adj}}=0.7905$). Figure~\ref{fig:false-abstention} shows the rates and Wilson intervals.
+
+\begin{figure}[t]
+\centering
+\includesvg[width=0.88\columnwidth,inkscapelatex=false]{figure4_false_abstention_ci}
+\caption{False-abstention rate with 95\% Wilson confidence intervals. False abstention means an answerable benchmark label paired with structured \code{ABSTAIN}.}
+\label{fig:false-abstention}
+\end{figure}
+
+Among 14 unanswerable intents per condition, false-answer counts were three for EN, two for MY, and five for MIX. The paired comparison was not significant ($p=0.2466$); the small population prevents an equivalence claim.
+
+\subsection{Contract and System Reliability}
+Contract validation passed for 212 of the 222 records (95.50\%). The parser identified the decision before validating the required fields, citation pairs, and abstention wording. As a result, a record could be included in the decision confusion matrix even if it later failed contract validation. Ten records failed at least one contract check, while five were marked with an infrastructure-event flag. However, all 222 records were retained in the analysis. Exact abstention wording was valid for 78 of the 81 \code{ABSTAIN} outputs, and mechanical validation passed for 134 of the 141 \code{ANSWER} outputs.
+
+The mean generation time was 69.06 seconds per record, resulting in a total runtime of approximately 4.26 hours. Both prompt and output lengths remained within the 4,096-token context limit and the 512-token generation limit.
+
+\subsection{Structural Error Patterns}
+The structural inventory contained 49 false abstentions, 10 false answers, 23 answerable Hit@5 misses, 10 contract-invalid records, and five records with an infrastructure-event flag. These nonexclusive flags affected 77 unique variants; 20 variants had multiple flags.
+
+Of the 49 false abstentions, 34 coincided with a Top-5 gold-page intersection and 15 with a miss. At the intent level, 37/74 intents had different EN/MY/MIX decisions. The most frequent disagreement was EN=\code{ANSWER}, MY=\code{ABSTAIN}, MIX=\code{ANSWER}, observed for 17 intents. MY falsely abstained while both paired EN and MIX decisions were correct for 16 intents.
+
+\begin{figure}[t]
+\centering
+\includesvg[width=\columnwidth,inkscapelatex=false]{figure5_structural_errors}
+\caption{Overlapping structural error indicators. Categories overlap and must not be summed as a unique-error total.}
+\label{fig:structural-errors}
+\end{figure}
+
+\section{Discussion}
+The language pattern differed between retrieval and decision outcomes. MIX had the highest observed Hit@$k$ values, but none of the paired retrieval tests was significant. Decision correctness did differ by language, with more false abstentions for MY. The retrieval ranks therefore do not fully describe the decision results.
+
+Nineteen MY false abstentions had a Top-5 gold-page match, compared with seven for EN and eight for MIX. This does not identify the generator as the cause because a matched page may contain an incomplete or poorly aligned chunk. These 34 records provide a defined subset for later semantic review.
+
+Abstention recall was 76.19\%, but precision was 39.51\% because 49 answerable variants received \code{ABSTAIN}. For student use, false answers risk unsupported guidance, while false abstentions reduce coverage. The experiment reports this trade-off but does not select a deployment threshold; the held-out set was not used for tuning.
+
+Contract validity reached 95.50\% under CPU-only execution. This percentage measures output structure, citation binding, and abstention wording only.
+
+The final controls correspond to observed development failures: paired intents address language variation, chunk--page checks address invalid citation pairs, and record-level checkpoints address runner stops. Raw failures were retained. These controls support audit and rerun procedures but do not measure semantic answer quality.
+
+\section{Limitations}
+\label{sec:limitations}
+First, qualified independent semantic reviewers were unavailable. The study therefore cannot estimate held-out semantic answer correctness, groundedness, hallucination, numeric correctness, or claim-level citation support.
+
+Second, the corpus is a single UIT academic-credits source rather than the full university website. Results may not generalize to other regulations, institutions, document layouts, or domains. Third, the benchmark contains only 14 unanswerable semantic intents, limiting precision and statistical power for false-answer comparisons. Fourth, evaluation uses one embedding model, one generator, and one frozen prompt/resource configuration; it is not a model-comparison study. Fifth, gold evidence is page based. Page intersection is reproducible but less precise than claim-level evidence annotation. Finally, generation used CPU-only local inference, and observed runtime may not generalize to other hardware.
+
+\section{Ethical and Reproducibility Considerations}
+Only publicly accessible official UIT material was included in the frozen experiment. Personal, authentication-protected, unofficial, and unrelated information was excluded. The system should not be deployed as an authoritative substitute for official regulations. Users must be directed to the source when decisions have academic consequences.
+
+Corpus, benchmark, split, index, prompt, parser, resource profile, model digest, generation outputs, analysis protocols, result tables, and figures are versioned and hashed. Development and held-out sets are separated by semantic intent. Held-out observations were not used to tune the frozen configuration. Validation failures and infrastructure events remain included rather than being regenerated or silently removed.
+
+\section{Conclusion}
+In this frozen local RAG experiment, gold-page evidence appeared in the first five results for 87.22\% of answerable held-out variants. The generator made the correct \code{ANSWER}/\code{ABSTAIN} decision for 73.42\% of held-out records, and 95.50\% satisfied the output contract. Retrieval differences across EN, MY, and MIX were not significant. Decision correctness did differ: MY had a 45.00\% false-abstention rate and lower accuracy than the other two conditions.
+
+These findings would have been obscured by a single aggregate score. Retrieval, abstention, contract compliance, and infrastructure failures need separate accounting, as do the three language forms. The paired benchmark, chunk--page citation checks, and failure-preserving execution records support that analysis. Future work should add independent semantic annotation, index a broader set of official documents, include more unanswerable intents, and test whether the MY abstention pattern recurs with other models and institutions.
+
+\balance
+\begin{thebibliography}{00}
+\bibitem{lewis2020rag}
+P. Lewis et al., ``Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks,'' in \emph{Advances in Neural Information Processing Systems}, vol. 33, 2020, pp. 9459--9474.
+
+\bibitem{wang2024e5}
+L. Wang, N. Yang, X. Huang, L. Yang, R. Majumder, and F. Wei, ``Multilingual E5 Text Embeddings: A Technical Report,'' arXiv:2402.05672, 2024, doi: 10.48550/arXiv.2402.05672.
+
+\bibitem{es2024ragas}
+S. Es, J. James, L. Espinosa Anke, and S. Schockaert, ``RAGAs: Automated Evaluation of Retrieval Augmented Generation,'' in \emph{Proc. 18th Conf. European Chapter of the Association for Computational Linguistics: System Demonstrations}, 2024, pp. 150--158, doi: 10.18653/v1/2024.eacl-demo.16.
+
+\bibitem{do2024contrastivemix}
+J. Do, J. Lee, and S.-w. Hwang, ``ContrastiveMix: Overcoming Code-Mixing Dilemma in Cross-Lingual Transfer for Information Retrieval,'' in \emph{Proc. 2024 Conf. North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 2 (Short Papers)}, 2024, pp. 197--204, doi: 10.18653/v1/2024.naacl-short.17.
+
+\bibitem{park2025language}
+J. Park and H. Lee, ``Investigating Language Preference of Multilingual RAG Systems,'' in \emph{Findings of the Association for Computational Linguistics: ACL 2025}, 2025, pp. 5647--5675, doi: 10.18653/v1/2025.findings-acl.295.
+
+\bibitem{wen2025limits}
+B. Wen, J. Yao, S. Feng, C. Xu, Y. Tsvetkov, B. Howe, and L. L. Wang, ``Know Your Limits: A Survey of Abstention in Large Language Models,'' \emph{Transactions of the Association for Computational Linguistics}, vol. 13, pp. 529--556, 2025, doi: 10.1162/tacl\_a\_00754.
+
+\bibitem{huang2025abstention}
+L. Huang et al., ``Alleviating Hallucinations from Knowledge Misalignment in Large Language Models via Selective Abstention Learning,'' in \emph{Proc. 63rd Annual Meeting of the Association for Computational Linguistics, Volume 1 (Long Papers)}, 2025, pp. 24564--24579, doi: 10.18653/v1/2025.acl-long.1199.
+
+\bibitem{chang2024hallucination}
+T. A. Chang, K. Tomanek, J. Hoffmann, N. Thain, E. MacMurray van Liemt, K. Meier-Hellstern, and L. Dixon, ``Detecting Hallucination and Coverage Errors in Retrieval Augmented Generation for Controversial Topics,'' in \emph{Proc. 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation}, 2024, pp. 4729--4743.
+
+\bibitem{aung2026burmesesan}
+T. Aung, J. R. Montalan, J. G. Ngui, and P. Limkonchotiwat, ``BURMESE-SAN: Burmese NLP Benchmark for Evaluating Large Language Models,'' in \emph{Proc. 15th Language Resources and Evaluation Conference}, 2026, pp. 224--245, doi: 10.63317/54dxgzy8h77c.
+
+\bibitem{nie2023parc}
+E. Nie, S. Liang, H. Schmid, and H. Sch\"utze, ``Cross-Lingual Retrieval Augmented Prompt for Low-Resource Languages,'' in \emph{Findings of the Association for Computational Linguistics: ACL 2023}, 2023, pp. 8320--8340, doi: 10.18653/v1/2023.findings-acl.528.
+
+\bibitem{ipa2025trase}
+A. S. Ipa, M. A. T. Rony, and M. S. Islam, ``Empowering Low-Resource Languages: TraSe Architecture for Enhanced Retrieval-Augmented Generation in Bangla,'' in \emph{Proc. 1st Workshop on Language Models for Underserved Communities}, 2025, pp. 8--15, doi: 10.18653/v1/2025.lm4uc-1.2.
+
+\bibitem{sun2024universityrag}
+H. Sun, Y. Wang, and S. Zhang, ``Retrieval-Augmented Generation for Domain-Specific Question Answering: A Case Study on Pittsburgh and CMU,'' arXiv:2411.13691, 2024, doi: 10.48550/arXiv.2411.13691.
+
+\bibitem{uit2025regulations}
+University of Information Technology, ``Undergraduate Academic Regulations (4 Years Program),'' June 2025, 24 pp., source ID \code{UIT-SRC-025}. [Online]. Available: \url{https://uit.edu.mm/academic-credits/}
+\end{thebibliography}
+
+\end{document}

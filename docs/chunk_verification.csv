@@ -1,0 +1,26 @@
+﻿chunk_id,page,section,text_present,metadata_correct,table_preserved,encoding_correct,retrieval_eligible,verification_status,verified_by,notes
+UIT-AC-CH-001,1,Document title,yes,yes,not_applicable,yes,no,verified,Han,Title page; keep in master corpus but exclude from vector index.
+UIT-AC-CH-002,2,Table of contents (Sections 1–11),yes,yes,not_applicable,yes,no,verified,Han,Table of contents; keep in master corpus but exclude from vector index.
+UIT-AC-CH-003,3,Table of contents (Sections 12–16),yes,yes,not_applicable,yes,no,verified,Han,Table of contents; keep in master corpus but exclude from vector index.
+UIT-AC-CH-004,4,1. General provisions; 2. Definitions,yes,yes,not_applicable,yes,yes,verified,Han,"Automated metadata, text-presence, and UTF-8 checks passed. Manual PDF comparison still required."
+UIT-AC-CH-005,5,2. Definitions (continued),yes,yes,not_applicable,yes,yes,verified,Han,"Automated metadata, text-presence, and UTF-8 checks passed. Manual PDF comparison still required."
+UIT-AC-CH-006,6,2. Definitions (continued),yes,yes,not_applicable,yes,yes,verified,Han,"Automated metadata, text-presence, and UTF-8 checks passed. Manual PDF comparison still required."
+UIT-AC-CH-007,7,2. Definitions (continued); 3. Academic year and study period,yes,yes,not_applicable,yes,yes,verified,Han,"Automated metadata, text-presence, and UTF-8 checks passed. Manual PDF comparison still required."
+UIT-AC-CH-008,8,3. Academic year and study period; 4. Student registration,yes,yes,not_applicable,yes,yes,verified,Han,"Automated metadata, text-presence, and UTF-8 checks passed. Manual PDF comparison still required."
+UIT-AC-CH-009,9,4. Student registration; 5. Learning Management System (LMS),yes,yes,not_applicable,yes,yes,verified,Han,"Automated metadata, text-presence, and UTF-8 checks passed. Manual PDF comparison still required."
+UIT-AC-CH-010,10,6. Course registration and specialization,yes,yes,not_applicable,yes,yes,verified,Han,"Automated metadata, text-presence, and UTF-8 checks passed. Manual PDF comparison still required."
+UIT-AC-CH-011,11,6. Course registration; 7. Credit system,yes,yes,yes,yes,yes,verified,Han,Automated checks passed; Markdown table remains inside its page-bounded chunk. Manual PDF comparison still required.
+UIT-AC-CH-012,12,7. Academic load; 8. Grade point; 9. Examination regulations,yes,yes,yes,yes,yes,verified,Han,Automated checks passed; Markdown table remains inside its page-bounded chunk. Manual PDF comparison still required.
+UIT-AC-CH-013,13,10. Assessment system and grade classification,yes,yes,not_applicable,yes,yes,verified,Han,"Automated metadata, text-presence, and UTF-8 checks passed. Manual PDF comparison still required."
+UIT-AC-CH-014,14,10. Grade symbols and grade-point table,yes,yes,yes,yes,yes,verified,Han,Automated checks passed; Markdown table remains inside its page-bounded chunk. Manual PDF comparison still required.
+UIT-AC-CH-015,15,10. Assessment results; GPA and CGPA formulas,yes,yes,yes,yes,yes,verified,Han,Automated checks passed; Markdown table remains inside its page-bounded chunk. Manual PDF comparison still required.
+UIT-AC-CH-016,16,10. GPA and CGPA calculation example,yes,yes,yes,yes,yes,verified,Han,Automated checks passed; Markdown table remains inside its page-bounded chunk. Manual PDF comparison still required.
+UIT-AC-CH-017,16,10. GPA and CGPA calculation example,yes,yes,yes,yes,yes,verified,Han,Automated checks passed; Markdown table remains inside its page-bounded chunk. Manual PDF comparison still required.
+UIT-AC-CH-018,17,"10. Assessment results, special examination, and appeal",yes,yes,not_applicable,yes,yes,verified,Han,"Automated metadata, text-presence, and UTF-8 checks passed. Manual PDF comparison still required."
+UIT-AC-CH-019,18,10. Grading report; 11. Student academic status,yes,yes,not_applicable,yes,yes,verified,Han,"Automated metadata, text-presence, and UTF-8 checks passed. Manual PDF comparison still required."
+UIT-AC-CH-020,19,"11. Warning, dismissal, unsatisfactory courses, and re-exam",yes,yes,not_applicable,yes,yes,verified,Han,"Automated metadata, text-presence, and UTF-8 checks passed. Manual PDF comparison still required."
+UIT-AC-CH-021,20,11. Re-take; 12. Academic ethics; 13. Deferment of study,yes,yes,not_applicable,yes,yes,verified,Han,"Automated metadata, text-presence, and UTF-8 checks passed. Manual PDF comparison still required."
+UIT-AC-CH-022,21,13. Deferment and suspension of study,yes,yes,not_applicable,yes,yes,verified,Han,"Automated metadata, text-presence, and UTF-8 checks passed. Manual PDF comparison still required."
+UIT-AC-CH-023,22,"13. Suspension, dismissal, and resignation; 14. Change of university",yes,yes,not_applicable,yes,yes,verified,Han,"Automated metadata, text-presence, and UTF-8 checks passed. Manual PDF comparison still required."
+UIT-AC-CH-024,23,14. Change of university; 15. Degree award requirements,yes,yes,not_applicable,yes,yes,verified,Han,"Automated metadata, text-presence, and UTF-8 checks passed. Manual PDF comparison still required."
+UIT-AC-CH-025,24,15. Degree classification,yes,yes,yes,yes,yes,verified,Han,Automated checks passed; Markdown table remains inside its page-bounded chunk. Manual PDF comparison still required.

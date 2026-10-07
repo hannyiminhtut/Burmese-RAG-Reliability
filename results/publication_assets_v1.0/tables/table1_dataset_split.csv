@@ -1,0 +1,7 @@
+﻿Item,Total,Development,Held-out
+Retrieval chunks,148,,
+Semantic intents,79,5,74
+Question variants,237,15,222
+Answerable variants,189,9,180
+Unanswerable variants,48,6,42
+EN / MY / MIX,79 / 79 / 79,5 / 5 / 5,74 / 74 / 74

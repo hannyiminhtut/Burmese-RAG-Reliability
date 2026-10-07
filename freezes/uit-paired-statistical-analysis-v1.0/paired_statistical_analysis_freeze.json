@@ -1,0 +1,72 @@
+{
+  "analysis_freeze_id": "UIT-PAIRED-STATISTICAL-ANALYSIS-FREEZE-v1.0",
+  "frozen_at": "2026-08-20T17:30:00+06:30",
+  "status": "immutable_paired_statistical_results",
+  "analysis_version": "paired-statistical-analysis-v1.0",
+  "protocol_freeze": {
+    "path": "freezes/uit-statistical-analysis-protocol-v1.0/statistical_analysis_protocol_freeze.json",
+    "sha256": "903c0990435cc248178e178aab381cc3e5e03c9a34df788bb8917f21e80a784a"
+  },
+  "implementation": {
+    "path": "src/analyze_paired_statistics.py",
+    "size_bytes": 13980,
+    "sha256": "7809931dff4a738049a86fdb3e24dee1863c8d83c787007812618812e5933aab"
+  },
+  "test": {
+    "path": "tests/test_analyze_paired_statistics.py",
+    "size_bytes": 1687,
+    "sha256": "7545e2d6647c8a5c36448c46ea3ae2eb8533f83371e6d1fde468928fb8892850",
+    "complete_suite": "66 passed, 3 dependency deprecation warnings"
+  },
+  "outputs": {
+    "results_json": {
+      "path": "results/paired_statistical_analysis_v1.0/paired_statistical_results_v1.0.json",
+      "size_bytes": 18818,
+      "sha256": "b1296104b3ed09c8057f7b9747ee853e6b38fd1dddd822f690e4bd8fc0706ae7"
+    },
+    "descriptive_csv": {
+      "path": "results/paired_statistical_analysis_v1.0/descriptive_metrics_v1.0.csv",
+      "size_bytes": 1622,
+      "sha256": "e361a9c94880ed6f141117f4c3b9ec974e1c337118604ae6cd7b43aab62326c6"
+    },
+    "omnibus_csv": {
+      "path": "results/paired_statistical_analysis_v1.0/omnibus_tests_v1.0.csv",
+      "size_bytes": 699,
+      "sha256": "63bf9f9994b22f4eceb4047ee7e92a34bc1c67b977fc7db831895c197862aee9"
+    },
+    "pairwise_csv": {
+      "path": "results/paired_statistical_analysis_v1.0/pairwise_tests_v1.0.csv",
+      "size_bytes": 2701,
+      "sha256": "d76a04f316ea80dcfa1106e15346aed02c17e21a683fe96932c1d16debc773a5"
+    },
+    "intent_level_csv": {
+      "path": "results/paired_statistical_analysis_v1.0/intent_level_paired_outcomes_v1.0.csv",
+      "size_bytes": 5731,
+      "sha256": "938dd663ffb056c677e12588126330c159138e2aeb4a616451076a9e3e9c71b7"
+    },
+    "manifest": {
+      "path": "results/paired_statistical_analysis_v1.0/paired_statistical_analysis_manifest_v1.0.json",
+      "size_bytes": 1993,
+      "sha256": "7ee0e587d1e54ef4223cf03084bace51de2cfd8645641597956913ffa10e789d"
+    }
+  },
+  "population": {
+    "paired_intents": 74,
+    "question_variants": 222,
+    "answerable_pairs": 60,
+    "unanswerable_pairs": 14,
+    "development_records": 0
+  },
+  "methods": {
+    "confidence_intervals": "95% Wilson",
+    "omnibus": "Cochran's Q",
+    "pairwise": "two-sided exact McNemar",
+    "multiplicity": "Holm within outcome",
+    "alpha": 0.05
+  },
+  "interpretation_boundary": {
+    "semantic_measures": "NOT_EVALUATED",
+    "heldout_tuning_permitted": false,
+    "independent_language_observation_assumption": false
+  }
+}

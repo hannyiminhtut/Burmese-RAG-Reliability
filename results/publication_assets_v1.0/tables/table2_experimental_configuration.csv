@@ -1,0 +1,8 @@
+﻿Component,Frozen setting
+Corpus/chunks,UIT-AC-v1.1; 148 chunks
+Embedding,intfloat/multilingual-e5-small
+Search,cosine via normalized vectors and FAISS IndexFlatIP; Top-k=5
+Generator,gemma3:4b-it-q4_K_M
+Prompt/parser,uit-context-only-json-v3 / uit-citation-object-parser-v3
+Resource profile,uit-cpu-safe-v1; num_ctx=4096; num_predict=512
+Sampling,temperature=0; top_p=0.9; top_k=40; seed=42

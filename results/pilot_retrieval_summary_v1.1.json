@@ -1,0 +1,78 @@
+{
+  "experiment_id": "UIT-RAG-CHUNKING-v1.1",
+  "corpus_version": "UIT-AC-v1.1",
+  "chunk_count": 148,
+  "embedding_model": "intfloat/multilingual-e5-small",
+  "fixed_pilot_intent_ids": [
+    "Q057",
+    "Q008",
+    "Q002",
+    "Q029",
+    "Q024"
+  ],
+  "random_seed": 42,
+  "selected_intent_count": 5,
+  "total_question_count": 15,
+  "answerable_question_count": 9,
+  "unanswerable_question_count": 6,
+  "counts_by_language_condition": {
+    "EN": 5,
+    "MY": 5,
+    "MIX": 5
+  },
+  "answerable_metrics": {
+    "Hit@1": 0.8888888888888888,
+    "Hit@3": 1.0,
+    "Hit@5": 1.0,
+    "MRR": 0.9444444444444444
+  },
+  "answerable_metrics_by_language": {
+    "EN": {
+      "Hit@1": 1.0,
+      "Hit@3": 1.0,
+      "Hit@5": 1.0,
+      "MRR": 1.0
+    },
+    "MY": {
+      "Hit@1": 1.0,
+      "Hit@3": 1.0,
+      "Hit@5": 1.0,
+      "MRR": 1.0
+    },
+    "MIX": {
+      "Hit@1": 0.6666666666666666,
+      "Hit@3": 1.0,
+      "Hit@5": 1.0,
+      "MRR": 0.8333333333333334
+    }
+  },
+  "top1_similarity_scores": {
+    "overall": {
+      "mean": 0.8437970439592998,
+      "median": 0.8483626842498779
+    },
+    "answerable": {
+      "mean": 0.8410609298282199,
+      "median": 0.8456954956054688
+    },
+    "unanswerable": {
+      "mean": 0.8479012151559194,
+      "median": 0.8551241755485535
+    },
+    "EN": {
+      "mean": 0.8192602157592773,
+      "median": 0.8114102482795715
+    },
+    "MY": {
+      "mean": 0.8635879039764405,
+      "median": 0.8679462671279907
+    },
+    "MIX": {
+      "mean": 0.8485430121421814,
+      "median": 0.8456954956054688
+    }
+  },
+  "error_count": 0,
+  "skipped_row_count": 0,
+  "creation_timestamp": "2026-08-16T13:15:23.173681Z"
+}

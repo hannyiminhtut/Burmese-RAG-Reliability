@@ -1,0 +1,26 @@
+{
+  "asset_version": "publication-assets-v1.0",
+  "source_freeze_hashes": {
+    "experiment": "89534ff6371d5e5fa6281564ab570a7fb897b68d972db44db70e98f5367e9841",
+    "automated": "831e46d317924d2a36f337e46df95034fb7e50654edfaad7cc808075502977e2",
+    "statistics": "b0ed6458fb2f0494cf0703c7e9bd0d93f74697f73a8c6de5dd3fe136c3f87a58",
+    "error_analysis": "fc767378b4ea5b2fb3ab0740bff10c49428854ab289637d9eeb571afa58678e6"
+  },
+  "semantic_measures": "NOT_EVALUATED",
+  "tables": 7,
+  "figures": 5,
+  "artifacts": {
+    "results\\publication_assets_v1.0\\figures\\figure1_pipeline.svg": "20bceaf3f4ac2dd9f10aa80fe08da6c2aa6f275c5ea56989376ceee590c09f36",
+    "results\\publication_assets_v1.0\\figures\\figure2_retrieval_by_language.svg": "cf980fb6bead085cbc8cabaefac3cb45332f49f5aa0a4441ff139782ae1f9bdb",
+    "results\\publication_assets_v1.0\\figures\\figure3_decision_accuracy_ci.svg": "b038b9cf68bab8d41a79c6b17f76ca79b38eda3fd1a4ff2d3b12cc7736d8e05d",
+    "results\\publication_assets_v1.0\\figures\\figure4_false_abstention_ci.svg": "dc8786328e3970197dc458181f58a41f44d1398b89b038646deb5a87391a34bd",
+    "results\\publication_assets_v1.0\\figures\\figure5_structural_errors.svg": "f6a5f27a3c10bcc9ebc9ef72ee312b8512b80cf498f546b917e125cbe42465df",
+    "results\\publication_assets_v1.0\\tables\\table1_dataset_split.csv": "dedf3138434463d0872fb9695b78f14bb394942808fa8bc00df55cca7087ed13",
+    "results\\publication_assets_v1.0\\tables\\table2_experimental_configuration.csv": "fe00b17492cfdcf8a57ea41bf23b1a0659ed949f04d9f002fe0c42860532baac",
+    "results\\publication_assets_v1.0\\tables\\table3_retrieval_performance.csv": "f7f28802d282ee709a5811495d8b55fb6c6313c0e6073b0210b1ee69b0745fe3",
+    "results\\publication_assets_v1.0\\tables\\table4_decision_performance.csv": "0eac3cfaa473167375ba300ad56189af7ff875c1ab207c97fda9920baedafc20",
+    "results\\publication_assets_v1.0\\tables\\table5_paired_tests.csv": "1f8e3388d045ebde3eda9a7c732408846c3e094c93dce527bcabeeec498f6efb",
+    "results\\publication_assets_v1.0\\tables\\table6_contract_reliability.csv": "4ab978e5f770410cb321abc67692419b0d6e58b1763fdfd2ec1999b378ea594e",
+    "results\\publication_assets_v1.0\\tables\\table7_structural_errors.csv": "2dbd5b41ef2f30619a39d80a76cdd64eb012ba1ca10fc7a5b188ddcc34b2781f"
+  }
+}

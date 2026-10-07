@@ -1,0 +1,134 @@
+(91.74699401855469, 151.1124725341797, 146.86253356933594, 176.29443359375) ->
+Hit@ 𝑘=
+1
+𝑁𝐴
+
+---
+(151.07400512695312, 155.74879455566406, 292.3306579589844, 180.94732666015625) ->
+𝑖=1
+I
+(︂
+𝐺𝑖∩𝑅(𝑘)
+𝑖
+≠∅
+)︂
+,
+(1)
+
+---
+(98.79698181152344, 184.97947692871094, 146.86253356933594, 210.16241455078125) ->
+MRR =
+1
+𝑁𝐴
+
+---
+(151.07400512695312, 206.060302734375, 161.9612579345703, 214.8143310546875) ->
+𝑖=1
+
+---
+(165.80299377441406, 184.9794158935547, 292.3292236328125, 210.16241455078125) ->
+1
+𝑟𝑖
+,
+(2)
+
+---
+(40.24300003051758, 220.7714080810547, 291.6625061035156, 267.25) ->
+where 𝑁𝐴= 180, 𝑟𝑖is the rank of the first relevant chunk, and
+1/𝑟𝑖= 0 when no relevant chunk occurs in the Top-5.
+Treating ABSTAIN as the positive class, the decision
+measures are
+
+---
+(43.4530029296875, 273.69293212890625, 292.3271179199219, 298.796875) ->
+Accuracy =
+𝑇𝑃+ 𝑇𝑁
+𝑇𝑃+ 𝑇𝑁+ 𝐹𝑃+ 𝐹𝑁,
+(3)
+
+---
+(69.29800415039062, 296.9693603515625, 281.91448974609375, 322.27386474609375) ->
+𝑃𝐴=
+𝑇𝑃
+𝑇𝑃+ 𝐹𝑃,
+𝑅𝐴=
+𝑇𝑃
+𝑇𝑃+ 𝐹𝑁,
+𝐹1 = 2𝑃𝐴𝑅𝐴
+
+---
+(280.7110290527344, 320.41143798828125, 292.327392578125, 330.3740234375) ->
+(4)
+
+---
+(40.24300003051758, 340.44757080078125, 292.9056396484375, 407.9084167480469) ->
+where 𝑇𝑃is a correct abstention, 𝐹𝑃a false abstention, 𝑇𝑁a
+correct answer decision, and 𝐹𝑁a false answer.
+EN, MY, and MIX variants of an intent are paired. With
+𝐶𝑗the successes in condition 𝑗, 𝑅𝑖the successes for intent 𝑖,
+𝑇= ∑︁
+𝑗𝐶𝑗, and 𝑘= 3, Cochran’s omnibus statistic is
+
+---
+(102.82899475097656, 411.8628234863281, 224.64117431640625, 436.6942138671875) ->
+𝑄=
+(𝑘−1)
+[︂
+𝑘∑︁𝑘
+𝑗=1 𝐶2
+𝑗−𝑇2]︂
+
+---
+(147.66799926757812, 424.70245361328125, 292.3267517089844, 447.5563659667969) ->
+𝑘𝑇−∑︁𝑁
+𝑖=1 𝑅2
+𝑖
+,
+(5)
+
+---
+(40.292999267578125, 453.6062927246094, 293.4044189453125, 584.1420288085938) ->
+compared
+with
+𝜒2
+2.
+For
+decision
+correctness,
+(𝐶𝐸𝑁, 𝐶𝑀𝑌, 𝐶𝑀𝐼𝑋) = (59, 45, 59), 𝑇= 163, and ∑︁
+𝑖𝑅2
+𝑖= 415,
+giving 𝑄= 10.595 and 𝑝= 0.0050. When 𝑄is significant,
+two-sided exact McNemar tests with Holm adjustment compare
+language pairs, and 95% Wilson intervals quantify uncertainty.
+The retrieval and false-abstention populations contain 60
+answerable intents per condition. The false-answer population
+contains only 14 unanswerable intents per condition. This
+gives low statistical power, so a non-significant false-answer
+result is not evidence that false-answer risk is equal across
+languages.
+
+---
+(303.614990234375, 492.22235107421875, 554.6769409179688, 549.9710083007812) ->
+MIX had the highest observed retrieval values and MY the
+lowest. However, none of the paired Hit@𝑘comparisons was
+statistically significant; even the closest result, Hit@5, had
+𝑝= 0.0990. Hit@𝑘is a page-intersection measure and does
+not prove that the retrieved text was sufficient to answer.
+
+---
+(303.2569885253906, 574.705322265625, 556.4218139648438, 718.4742431640625) ->
+The generator produced 141 ANSWER and 81 ABSTAIN
+decisions (Table III).
+Decision accuracy was 163/222 (73.42%). This value mea-
+sures only whether the decision field matched the answerability
+label; it is not answer-generation accuracy. Abstention precision
+was 32/81 (39.51%), recall was 32/42 (76.19%), and F1 was
+52.03%. The system therefore detected most unanswerable
+variants but also rejected many answerable ones.
+Table IV gives decision results by language. Decision
+accuracy was 79.73% for EN and MIX but 60.81% for MY.
+Cochran’s 𝑄confirmed a language difference (𝑄(2) = 10.595,
+𝑝= 0.0050), and Holm-adjusted pairwise tests isolated MY
+
+---

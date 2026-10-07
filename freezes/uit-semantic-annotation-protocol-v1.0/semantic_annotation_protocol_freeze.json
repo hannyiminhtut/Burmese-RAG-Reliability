@@ -1,0 +1,68 @@
+{
+  "protocol_freeze_id": "UIT-SEMANTIC-ANNOTATION-PROTOCOL-FREEZE-v1.0",
+  "frozen_at": "2026-08-20T14:34:27.1262210Z",
+  "status": "immutable_before_annotation",
+  "protocol": {
+    "version": "semantic-annotation-protocol-v1.0",
+    "path": "docs/semantic_annotation_protocol_v1.0.md",
+    "size_bytes": 14589,
+    "sha256": "4f5deb7b2cd02176de73e6e3940c56d4c842a8696362f2d925570cc0f9ad9357"
+  },
+  "applies_to": {
+    "run_id": "uit-ollama-heldout-v1.1-20260819-03",
+    "run_freeze_id": "UIT-HELDOUT-RUN-FREEZE-v1.1-20260819-03",
+    "run_freeze_path": "freezes/uit-heldout-run-v1.1-20260819-03/heldout_run_freeze.json",
+    "run_freeze_sha256": "06dfffaac75d8498f6e772f04df1e15ea62638745e576c9e7049ea4c8a5b3e7b",
+    "heldout_records": 222,
+    "development_records": 0
+  },
+  "parent_protocols": {
+    "evaluation_protocol": {
+      "path": "docs/evaluation_protocol.md",
+      "sha256": "475f450a06c0adb453b0c208352c6789cfb87f52754004cb69d721c3db106463"
+    },
+    "evaluation_protocol_addendum": {
+      "version": "evaluation-protocol-addendum-v1.0",
+      "path": "docs/evaluation_protocol_addendum_v1.0.md",
+      "sha256": "3ff0dcbe4de6a66ac7b84b8f174f1e540fb8e40ac919fc160aaf9935b0699efc"
+    }
+  },
+  "frozen_methodological_decisions": {
+    "primary_evidence_boundary": "exact supplied Top-5 chunks only",
+    "decision_source": "structured decision field",
+    "primary_population": "all 222 frozen held-out records",
+    "validation_failures_included": true,
+    "deterministic_abstention_language_consistency": "NOT_APPLICABLE",
+    "nonexact_abstention_language_consistency": "evaluate normally",
+    "reviewers": 2,
+    "independent_annotation": true,
+    "agreement_before_adjudication": true,
+    "preserve_original_reviewer_labels": true,
+    "paired_language_design": true
+  },
+  "required_labels": [
+    "decision_correctness",
+    "evidence_conditioned_decision_appropriateness",
+    "answer_correctness",
+    "numeric_correctness",
+    "groundedness",
+    "hallucination",
+    "citation_support",
+    "language_consistency",
+    "output_cleanliness",
+    "abstention_wording_compliance",
+    "contract_validity",
+    "primary_failure_attribution",
+    "secondary_failure_attributions",
+    "gold_evidence_location",
+    "reviewer_evidence_notes"
+  ],
+  "immutability_policy": {
+    "modify_protocol_after_annotation_begins": false,
+    "modify_frozen_outputs": false,
+    "repair_validation_failures": false,
+    "search_full_corpus_for_primary_annotation": false,
+    "change_labels_without_versioned_amendment": false,
+    "next_permitted_step": "Create a separate blinded 222-row annotation package without assigning semantic labels."
+  }
+}

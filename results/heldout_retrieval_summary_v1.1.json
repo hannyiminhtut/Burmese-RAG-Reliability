@@ -1,0 +1,66 @@
+{
+  "experiment_id": "UIT-RAG-CHUNKING-v1.1",
+  "corpus_version": "UIT-AC-v1.1",
+  "corpus_sha256": "ac47c4bb65c8888b2955e58de27e587557d079aa21122f91581ce07758e8b899",
+  "excluded_pilot_intent_ids": [
+    "Q057",
+    "Q008",
+    "Q002",
+    "Q029",
+    "Q024"
+  ],
+  "heldout_intent_count": 74,
+  "heldout_question_count": 222,
+  "answerable_question_count": 180,
+  "unanswerable_question_count": 42,
+  "counts_by_language_condition": {
+    "EN": 74,
+    "MY": 74,
+    "MIX": 74
+  },
+  "answerable_metrics": {
+    "Hit@1": 0.5277777777777778,
+    "Hit@3": 0.7722222222222223,
+    "Hit@5": 0.8722222222222222,
+    "MRR": 0.6576851851851853
+  },
+  "answerable_metrics_by_language": {
+    "EN": {
+      "Hit@1": 0.5166666666666667,
+      "Hit@3": 0.75,
+      "Hit@5": 0.8666666666666667,
+      "MRR": 0.6444444444444444
+    },
+    "MY": {
+      "Hit@1": 0.4666666666666667,
+      "Hit@3": 0.75,
+      "Hit@5": 0.8166666666666667,
+      "MRR": 0.6038888888888889
+    },
+    "MIX": {
+      "Hit@1": 0.6,
+      "Hit@3": 0.8166666666666667,
+      "Hit@5": 0.9333333333333333,
+      "MRR": 0.7247222222222223
+    }
+  },
+  "top1_score_statistics": {
+    "answerable": {
+      "mean": 0.8503283533785079,
+      "median": 0.8514218926429749,
+      "standard_deviation": 0.020726288596677165,
+      "minimum": 0.7847089767456055,
+      "maximum": 0.9028216004371643
+    },
+    "unanswerable": {
+      "mean": 0.834988215139934,
+      "median": 0.8378654718399048,
+      "standard_deviation": 0.021504002595947973,
+      "minimum": 0.7729274034500122,
+      "maximum": 0.8832763433456421
+    }
+  },
+  "error_count": 0,
+  "skipped_row_count": 0,
+  "creation_timestamp": "2026-08-16T13:23:51.968592Z"
+}

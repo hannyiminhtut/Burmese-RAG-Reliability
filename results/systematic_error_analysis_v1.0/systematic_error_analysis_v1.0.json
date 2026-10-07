@@ -1,0 +1,45 @@
+{
+  "analysis_version": "systematic-structural-error-analysis-v1.0",
+  "analysis_type": "automated_non_semantic_structural_error_analysis",
+  "population": {
+    "records": 222,
+    "semantic_intents": 74,
+    "development_records": 0,
+    "answerable": 180,
+    "unanswerable": 42
+  },
+  "flag_counts": {
+    "false_abstention": 49,
+    "false_answer": 10,
+    "gold_page_miss_at_5": 23,
+    "contract_invalid": 10,
+    "infrastructure_event_recorded": 5
+  },
+  "records_with_any_structural_flag": 77,
+  "records_with_multiple_structural_flags": 20,
+  "paired_decision_disagreement_intents": 37,
+  "paired_decision_patterns_among_disagreements": {
+    "ABSTAIN|ABSTAIN|ANSWER": 7,
+    "ABSTAIN|ANSWER|ABSTAIN": 2,
+    "ABSTAIN|ANSWER|ANSWER": 4,
+    "ANSWER|ABSTAIN|ABSTAIN": 5,
+    "ANSWER|ABSTAIN|ANSWER": 17,
+    "ANSWER|ANSWER|ABSTAIN": 2
+  },
+  "my_false_abstention_patterns": {
+    "MY_false_abstention_EN_correct": 21,
+    "MY_false_abstention_MIX_correct": 20,
+    "MY_false_abstention_EN_and_MIX_correct": 16
+  },
+  "semantic_measures": "NOT_EVALUATED",
+  "causal_failure_attribution": "NOT_EVALUATED",
+  "run_id": "uit-ollama-heldout-v1.1-20260819-03",
+  "protocol_freeze_id": "UIT-SYSTEMATIC-ERROR-ANALYSIS-PROTOCOL-FREEZE-v1.0",
+  "created_at": "2026-08-20T15:43:29.045255+00:00",
+  "input_hashes": {
+    "run_freeze": "06dfffaac75d8498f6e772f04df1e15ea62638745e576c9e7049ea4c8a5b3e7b",
+    "generation_jsonl": "651fa95d03c5dfec69251c95afea3132b2628495b692ea96e8961d85371ce67a",
+    "retrieval_csv": "6f5e899f0fe44825a12c47d48115342676470df1c8240d04cc8d2c190dd710d6",
+    "protocol_freeze": "62c1827f080d3dad70bfae247fbc58a7fee4580ab0a8820b8cc00a01f8c5fde0"
+  }
+}

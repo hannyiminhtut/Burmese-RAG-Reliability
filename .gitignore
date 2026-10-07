@@ -1,0 +1,75 @@
+# ==============================================================================
+# Burmese-RAG-Reliability .gitignore
+# Excludes virtual environments, caches, secrets, OS junk, and temporary builds.
+# ==============================================================================
+
+# Python Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# Byte-compiled / optimized / cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Testing & Cache directories
+.pytest_cache/
+.tmp/
+.cache/
+.coverage
+htmlcov/
+
+# Environment Variables & Secret Credentials
+.env
+.env.*
+*.key
+*.pem
+*.pfx
+secrets.json
+credentials.json
+
+# IDE & Editor specific files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# Operating System Files
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Microsoft Office temporary lock files
+~$*.docx
+~$*.xlsx
+~$*.pptx
+
+# Log and crash dump files
+*.log
+*.bak
+*.dmp
+
+# LaTeX compilation auxiliary files (keep sources: .tex, .bib, and final .pdf)
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.out
+*.toc
+*.lot
+*.lof

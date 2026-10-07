@@ -1,0 +1,1 @@
+run_id,intent_id,variant_id,split,language_condition,answerability,question,gold_answer,gold_evidence_page,retrieved_chunk_ids,retrieved_page_sets,retrieved_scores,retrieval_hit_at_5,generated_answer,model_abstained,cited_chunk_ids,cited_pages,latency_ms,generation_status,error_notes

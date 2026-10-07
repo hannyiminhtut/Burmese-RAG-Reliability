@@ -1,0 +1,38 @@
+{
+  "analysis_version": "automated-non-semantic-heldout-v1.0",
+  "analysis_type": "automated_non_semantic_heldout_analysis",
+  "run_id": "uit-ollama-heldout-v1.1-20260819-03",
+  "record_count": 222,
+  "development_record_count": 0,
+  "waiver_sha256": "1847451d950edf311419f0b799ec9c4b601e28c5d8d0cfb183ce1ed1cdf4e16e",
+  "inputs": {
+    "run_freeze": {
+      "path": "freezes\\uit-heldout-run-v1.1-20260819-03\\heldout_run_freeze.json",
+      "sha256": "06dfffaac75d8498f6e772f04df1e15ea62638745e576c9e7049ea4c8a5b3e7b"
+    },
+    "waiver_freeze": {
+      "path": "freezes\\uit-semantic-evaluation-waiver-v1.0\\semantic_evaluation_waiver_freeze.json",
+      "sha256": "251cfb78eb94748f274d78967c2332546ea6e4debad201f636e6b2a2b5890136"
+    },
+    "generation_jsonl": {
+      "path": "results/heldout_generation/uit-ollama-heldout-v1.1-20260819-03/uit-ollama-heldout-v1.1-20260819-03.jsonl",
+      "sha256": "651fa95d03c5dfec69251c95afea3132b2628495b692ea96e8961d85371ce67a"
+    },
+    "retrieval_summary": {
+      "path": "results\\heldout_retrieval_summary_v1.1.json",
+      "sha256": "3ef3109176a9f5024023d8bfe35e76a309c3fdd9b8c624322fab6eefab2f82d2"
+    }
+  },
+  "outputs": {
+    "json": {
+      "path": "results\\automated_evaluation_v1.0\\heldout_automated_metrics_v1.0.json",
+      "sha256": "085a2c592738fd04c0a024bc24bf9c3d97793c20ccfaacefae641b0d6dc127d8"
+    },
+    "csv": {
+      "path": "results\\automated_evaluation_v1.0\\heldout_automated_metrics_v1.0.csv",
+      "sha256": "a917c32c902d257d877b3a03a511e98b51c1f97b552765de7eeefc326d0e5cea"
+    }
+  },
+  "human_semantic_annotation_performed": false,
+  "created_at": "2026-08-20T15:20:22.366272+00:00"
+}

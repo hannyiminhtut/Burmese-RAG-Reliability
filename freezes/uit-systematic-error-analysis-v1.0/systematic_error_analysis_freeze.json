@@ -1,0 +1,42 @@
+{
+  "analysis_freeze_id": "UIT-SYSTEMATIC-ERROR-ANALYSIS-FREEZE-v1.0",
+  "frozen_at": "2026-08-20T18:30:00+06:30",
+  "status": "immutable_structural_error_analysis",
+  "analysis_version": "systematic-structural-error-analysis-v1.0",
+  "protocol_freeze": {
+    "path": "freezes/uit-systematic-error-analysis-protocol-v1.0/systematic_error_analysis_protocol_freeze.json",
+    "sha256": "62c1827f080d3dad70bfae247fbc58a7fee4580ab0a8820b8cc00a01f8c5fde0"
+  },
+  "implementation": {
+    "path": "src/analyze_systematic_errors.py",
+    "size_bytes": 12750,
+    "sha256": "4ec573905d18110107821f529e01a7deb31e691c95b23bc3cb3be5f637d408c4"
+  },
+  "test": {
+    "path": "tests/test_analyze_systematic_errors.py",
+    "size_bytes": 2225,
+    "sha256": "7fa3253febb2b777fcd83de0a207082ab48a31e1985c33f1053c070173b79d31",
+    "complete_suite": "71 passed, 3 dependency deprecation warnings"
+  },
+  "outputs": {
+    "results_json": {"path": "results/systematic_error_analysis_v1.0/systematic_error_analysis_v1.0.json", "size_bytes": 1677, "sha256": "93c1c26a4b335ef34e84e9d6b614cf771b9a7563b7f832dac9933464005da056"},
+    "inventory_csv": {"path": "results/systematic_error_analysis_v1.0/structural_error_inventory_v1.0.csv", "size_bytes": 12871, "sha256": "04c1d1bc03df527451daf2a27738347e790d0688efd494138658599f0a2b0568"},
+    "counts_csv": {"path": "results/systematic_error_analysis_v1.0/structural_error_counts_v1.0.csv", "size_bytes": 1846, "sha256": "4b3a357188e8203f2f5894e2d4fa6c31f40f33d1fd081ca5a3d3dc473b16a6b7"},
+    "contingency_csv": {"path": "results/systematic_error_analysis_v1.0/retrieval_decision_contingency_v1.0.csv", "size_bytes": 1552, "sha256": "5fb66dc6ee3a7ed831f6409d995915c1627eda2190ae227b0d178f8f0ea5c73e"},
+    "disagreements_csv": {"path": "results/systematic_error_analysis_v1.0/paired_language_disagreements_v1.0.csv", "size_bytes": 2883, "sha256": "500c1af4dc3095a4a44097abf65814dcb4f3dfd047831b27c32f047b38559a89"},
+    "manifest": {"path": "results/systematic_error_analysis_v1.0/systematic_error_analysis_manifest_v1.0.json", "size_bytes": 1874, "sha256": "1ff65d7ee4d50bd7becaa53230ac7ac7b90061f2ccec9ab9a4b7cacb548afb7c"}
+  },
+  "validated_counts": {
+    "records": 222,
+    "development_records": 0,
+    "records_with_any_flag": 77,
+    "records_with_multiple_flags": 20,
+    "paired_disagreement_intents": 37
+  },
+  "interpretation_boundary": {
+    "semantic_measures": "NOT_EVALUATED",
+    "causal_failure_attribution": "NOT_EVALUATED",
+    "gold_page_hit_means_semantic_sufficiency": false,
+    "categories_are_mutually_exclusive": false
+  }
+}

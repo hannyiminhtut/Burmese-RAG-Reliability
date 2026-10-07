@@ -1,0 +1,46 @@
+{
+  "analysis_version": "paired-statistical-analysis-v1.0",
+  "protocol_freeze_id": "UIT-STATISTICAL-ANALYSIS-PROTOCOL-FREEZE-v1.0",
+  "run_id": "uit-ollama-heldout-v1.1-20260819-03",
+  "population": {
+    "semantic_intents": 74,
+    "question_variants": 222,
+    "answerable_intents": 60,
+    "unanswerable_intents": 14
+  },
+  "software": {
+    "python": "3.9.4",
+    "scipy": "1.13.1"
+  },
+  "inputs": {
+    "run_freeze": "06dfffaac75d8498f6e772f04df1e15ea62638745e576c9e7049ea4c8a5b3e7b",
+    "generation_jsonl": "651fa95d03c5dfec69251c95afea3132b2628495b692ea96e8961d85371ce67a",
+    "retrieval_csv": "6f5e899f0fe44825a12c47d48115342676470df1c8240d04cc8d2c190dd710d6",
+    "protocol_freeze": "903c0990435cc248178e178aab381cc3e5e03c9a34df788bb8917f21e80a784a",
+    "automated_analysis_freeze": "831e46d317924d2a36f337e46df95034fb7e50654edfaad7cc808075502977e2"
+  },
+  "outputs": {
+    "json": {
+      "path": "results\\paired_statistical_analysis_v1.0\\paired_statistical_results_v1.0.json",
+      "sha256": "b1296104b3ed09c8057f7b9747ee853e6b38fd1dddd822f690e4bd8fc0706ae7"
+    },
+    "descriptive_csv": {
+      "path": "results\\paired_statistical_analysis_v1.0\\descriptive_metrics_v1.0.csv",
+      "sha256": "e361a9c94880ed6f141117f4c3b9ec974e1c337118604ae6cd7b43aab62326c6"
+    },
+    "omnibus_csv": {
+      "path": "results\\paired_statistical_analysis_v1.0\\omnibus_tests_v1.0.csv",
+      "sha256": "63bf9f9994b22f4eceb4047ee7e92a34bc1c67b977fc7db831895c197862aee9"
+    },
+    "pairwise_csv": {
+      "path": "results\\paired_statistical_analysis_v1.0\\pairwise_tests_v1.0.csv",
+      "sha256": "d76a04f316ea80dcfa1106e15346aed02c17e21a683fe96932c1d16debc773a5"
+    },
+    "paired_outcomes_csv": {
+      "path": "results\\paired_statistical_analysis_v1.0\\intent_level_paired_outcomes_v1.0.csv",
+      "sha256": "938dd663ffb056c677e12588126330c159138e2aeb4a616451076a9e3e9c71b7"
+    }
+  },
+  "semantic_measures": "NOT_EVALUATED",
+  "created_at": "2026-08-20T15:34:44.434839+00:00"
+}

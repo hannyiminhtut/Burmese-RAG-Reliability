@@ -1,0 +1,141 @@
+{
+  "freeze_id": "UIT-RAG-FREEZE-v1.1-20260819",
+  "created_at": "2026-08-19T09:38:36.2489489Z",
+  "status": "frozen",
+  "scope": "held-out generation for UIT academic-regulation RAG reliability",
+  "source_corpus": {
+    "path": "data/processed/UIT-SRC-025_academic-credits.txt",
+    "corpus_id": "UIT-AC",
+    "version": "UIT-AC-v1.0",
+    "sha256": "2e092cce3c2eaf5f645899010c1133b18b1ffb2b2eccfe3ed1067b531736f063"
+  },
+  "chunks": {
+    "path": "data/processed/academic_credits_retrieval_chunks_v1.1.jsonl",
+    "version": "UIT-AC-v1.1",
+    "count": 148,
+    "sha256": "ac47c4bb65c8888b2955e58de27e587557d079aa21122f91581ce07758e8b899"
+  },
+  "benchmark": {
+    "path": "data/evaluation/question_benchmark.csv",
+    "sha256": "563e57d818306a042730d0562d50c813d1e0dfa00b9ca773db9145ceb11aecd7",
+    "semantic_intents": 79,
+    "question_variants": 237,
+    "answerable": 189,
+    "unanswerable": 48,
+    "split_definition": {
+      "development_intent_ids": ["Q002", "Q008", "Q024", "Q029", "Q057"],
+      "development_questions": 15,
+      "heldout_intents": 74,
+      "heldout_questions": 222,
+      "heldout_answerable": 180,
+      "heldout_unanswerable": 42,
+      "heldout_by_language": {"EN": 74, "MY": 74, "MIX": 74},
+      "rule": "Exclude exactly the five frozen development intent IDs; select every remaining benchmark row."
+    }
+  },
+  "retrieval": {
+    "configuration": "configs/experiment_config_v1.1.yaml",
+    "configuration_sha256": "2be841e41e7cbe79f39f83f4d74e64236feb447f990a424b4e9bd7abde616b79",
+    "heldout_results": "results/heldout_retrieval_results_v1.1.csv",
+    "heldout_results_sha256": "6f5e899f0fe44825a12c47d48115342676470df1c8240d04cc8d2c190dd710d6",
+    "index": "models/uit_academic_credits_v1_1.faiss",
+    "index_sha256": "93084fb628429fc8cbf56fea3f666dbc3cf7f5262487d4dd58fa185bbb3b2763",
+    "metadata": "models/uit_academic_credits_v1_1_metadata.json",
+    "metadata_sha256": "6f9d1eefa3d573b58e099203a97cae300e2dc2eefac79518f09cbe86ca28f582",
+    "index_manifest": "models/uit_academic_credits_v1_1_manifest.json",
+    "index_manifest_sha256": "4609b58345329310b9e29598d5d4a810293a3616ca7a1cced7ce61172a4e8a6d",
+    "top_k": 5,
+    "embedding_model": "intfloat/multilingual-e5-small",
+    "similarity_metric": "cosine via normalized vectors and FAISS IndexFlatIP"
+  },
+  "generation": {
+    "ollama_url": "http://localhost:11434",
+    "ollama_model": "gemma3:4b-it-q4_K_M",
+    "ollama_model_manifest_digest": "sha256:a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+    "ollama_model_manifest_digest_canonical": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+    "digest_normalization": "trim whitespace, accept zero or one case-insensitive sha256 prefix, require exactly 64 hexadecimal characters, return lowercase hex without prefix",
+    "ollama_model_layer_digest": "sha256:aeda25e63ebd698fab8638ffb778e68bed908b960d39d0becc650fa981609d25",
+    "ollama_version": "0.32.13",
+    "prompt_version": "uit-context-only-json-v3",
+    "prompt_contract_path": "freezes/uit-rag-freeze-v1.1-20260819/prompt_contract_v3.txt",
+    "prompt_contract_sha256": "f915dddae197737feabfccb1b0eca89e17f5f2b4cb6094ca17ae4486d7d1d420",
+    "prompt_implementation_sha256": "6f4dce1b473b73982f6b76f25138a9c69fd4375db02aac3cd2d32906df117e43",
+    "parser_version": "uit-citation-object-parser-v3",
+    "parser_implementation_sha256": "53c5e9a893118c4385c82b9c02e243766268ec7dc6f09eb1442775aef2f1e8cd",
+    "resource_profile_version": "uit-cpu-safe-v1",
+    "settings": {
+      "temperature": 0,
+      "top_p": 0.9,
+      "top_k": 40,
+      "seed": 42,
+      "num_ctx": 4096,
+      "num_predict": 512
+    },
+    "timeout_seconds": 600.0,
+    "retry_policy": {
+      "maximum_attempts": 2,
+      "cooldown_seconds": 5.0,
+      "eligible": "classified transient infrastructure failures only",
+      "excluded": "parsing, semantic, citation, and output-validation failures",
+      "preserve_every_attempt": true
+    },
+    "sequential_requests": true,
+    "required_environment": {
+      "OLLAMA_NUM_PARALLEL": "1",
+      "OLLAMA_MAX_LOADED_MODELS": "1"
+    },
+    "deterministic_abstention_response": "The provided academic regulations do not contain sufficient information to answer the question."
+  },
+  "scoring": {
+    "protocol_version": "evaluation-protocol-v1",
+    "protocol_path": "docs/evaluation_protocol.md",
+    "protocol_sha256": "475f450a06c0adb453b0c208352c6789cfb87f52754004cb69d721c3db106463",
+    "addendum_version": "evaluation-protocol-addendum-v1.0",
+    "addendum_path": "docs/evaluation_protocol_addendum_v1.0.md",
+    "addendum_sha256": "3ff0dcbe4de6a66ac7b84b8f174f1e540fb8e40ac919fc160aaf9935b0699efc",
+    "decision_source": "structured decision field",
+    "deterministic_abstention_wording_metric": "separate exact-match contract metric",
+    "abstention_language_consistency": "NOT_APPLICABLE",
+    "answer_language_consistency": "evaluate normally for EN, MY, and MIX"
+  },
+  "runtime": {
+    "python_version": "3.9.4",
+    "dependency_lock": "requirements-lock.txt",
+    "dependency_lock_sha256": "bed7321f22483921fff9421a672226ab981eeddf867cca522b3d3889f22e5304",
+    "dependency_versions": "Every exact package version is recorded in requirements-lock.txt."
+  },
+  "paths": {
+    "benchmark": "data/evaluation/question_benchmark.csv",
+    "development_intents": "results/pilot_intents.json",
+    "heldout_retrieval_results": "results/heldout_retrieval_results_v1.1.csv",
+    "metadata": "models/uit_academic_credits_v1_1_metadata.json"
+  },
+  "outputs": {
+    "root": "results/heldout_generation/<run-id>/",
+    "jsonl": "<run-id>.jsonl",
+    "csv_summary": "<run-id>_summary.csv",
+    "run_manifest": "<run-id>_manifest.json",
+    "overwrite_policy": "Existing run directories are never overwritten.",
+    "checkpoint_policy": "Append and fsync each completed JSONL record, then atomically update CSV and run manifest.",
+    "resume_policy": "Resume only with the same run ID and freeze ID; skip checkpointed variant IDs after freeze verification."
+  },
+  "artifacts": {
+    "source_corpus": {"path": "data/processed/UIT-SRC-025_academic-credits.txt", "sha256": "2e092cce3c2eaf5f645899010c1133b18b1ffb2b2eccfe3ed1067b531736f063"},
+    "chunks": {"path": "data/processed/academic_credits_retrieval_chunks_v1.1.jsonl", "sha256": "ac47c4bb65c8888b2955e58de27e587557d079aa21122f91581ce07758e8b899"},
+    "benchmark": {"path": "data/evaluation/question_benchmark.csv", "sha256": "563e57d818306a042730d0562d50c813d1e0dfa00b9ca773db9145ceb11aecd7"},
+    "development_intents": {"path": "results/pilot_intents.json", "sha256": "a3437e7724ec6529be6ff4fb4a71e1154356f4ae48b8f2802c428ac8fdb12c0c"},
+    "heldout_retrieval_results": {"path": "results/heldout_retrieval_results_v1.1.csv", "sha256": "6f5e899f0fe44825a12c47d48115342676470df1c8240d04cc8d2c190dd710d6"},
+    "retrieval_config": {"path": "configs/experiment_config_v1.1.yaml", "sha256": "2be841e41e7cbe79f39f83f4d74e64236feb447f990a424b4e9bd7abde616b79"},
+    "faiss_index": {"path": "models/uit_academic_credits_v1_1.faiss", "sha256": "93084fb628429fc8cbf56fea3f666dbc3cf7f5262487d4dd58fa185bbb3b2763"},
+    "metadata": {"path": "models/uit_academic_credits_v1_1_metadata.json", "sha256": "6f9d1eefa3d573b58e099203a97cae300e2dc2eefac79518f09cbe86ca28f582"},
+    "index_manifest": {"path": "models/uit_academic_credits_v1_1_manifest.json", "sha256": "4609b58345329310b9e29598d5d4a810293a3616ca7a1cced7ce61172a4e8a6d"},
+    "evaluation_protocol": {"path": "docs/evaluation_protocol.md", "sha256": "475f450a06c0adb453b0c208352c6789cfb87f52754004cb69d721c3db106463"},
+    "protocol_addendum": {"path": "docs/evaluation_protocol_addendum_v1.0.md", "sha256": "3ff0dcbe4de6a66ac7b84b8f174f1e540fb8e40ac919fc160aaf9935b0699efc"},
+    "prompt_contract": {"path": "freezes/uit-rag-freeze-v1.1-20260819/prompt_contract_v3.txt", "sha256": "f915dddae197737feabfccb1b0eca89e17f5f2b4cb6094ca17ae4486d7d1d420"},
+    "generation_pipeline": {"path": "src/generate_pilot.py", "sha256": "5e2089c559b62445b49518e1d0fb837b265d0a5b9a2a7345c7b43e88b42f0eed"},
+    "ollama_client": {"path": "src/ollama_client.py", "sha256": "e6f755baf040378ac68834ef322f2be957cb5d4167ca1490f7c8dd958ca83dad"},
+    "heldout_runner": {"path": "src/generate_heldout.py", "sha256": "bfe41d3873472de722d580b2ecb4118c1597fdb50de6c75ff412d0265be96a2c"},
+    "freeze_verifier": {"path": "src/experiment_freeze.py", "sha256": "a52073e69dc0339df83cc1df10ea4a575b562617be63f97e638ed92697aa166a"},
+    "dependency_lock": {"path": "requirements-lock.txt", "sha256": "bed7321f22483921fff9421a672226ab981eeddf867cca522b3d3889f22e5304"}
+  }
+}

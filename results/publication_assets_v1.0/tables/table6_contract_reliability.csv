@@ -1,0 +1,5 @@
+﻿Metric,Numerator,Denominator,Value
+Contract valid,212,222,0.954954954954955
+Abstention wording compliant,78,81,0.9629629629629629
+Mechanically validated ANSWER,134,141,0.950354609929078
+Infrastructure event recorded,5,222,0.02252252252252252

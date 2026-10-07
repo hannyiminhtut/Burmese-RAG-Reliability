@@ -1,0 +1,39 @@
+{
+  "asset_freeze_id": "UIT-PUBLICATION-ASSETS-FREEZE-v1.0",
+  "frozen_at": "2026-08-20T19:00:00+06:30",
+  "status": "immutable_publication_assets",
+  "asset_version": "publication-assets-v1.0",
+  "package_manifest": {
+    "path": "results/publication_assets_v1.0/publication_assets_manifest_v1.0.json",
+    "size_bytes": 2318,
+    "sha256": "8b5fb52d30ee05fa0f017e369bc51190844901bf431ed836b932af1dd5a986e1"
+  },
+  "implementation": {
+    "path": "src/build_publication_assets.py",
+    "size_bytes": 13232,
+    "sha256": "1ef467c8d359784915188d7c94fac3a73d9c78af91d8b14316295a6e17d401ea"
+  },
+  "test": {
+    "path": "tests/test_build_publication_assets.py",
+    "size_bytes": 961,
+    "sha256": "ecdefe9ccf2621248cfb0e4e505e1e28f5340634d9eea1800fddd936dc52c1fc",
+    "complete_suite": "74 passed, 3 dependency deprecation warnings"
+  },
+  "validated_assets": {
+    "tables": 7,
+    "svg_figures": 5,
+    "heldout_variants": 222,
+    "development_variants": 0,
+    "semantic_measures": "NOT_EVALUATED"
+  },
+  "format": {
+    "tables": "UTF-8 BOM CSV",
+    "figures": "valid vector SVG",
+    "new_runtime_dependency_added": false
+  },
+  "immutability": {
+    "manual_value_edits": false,
+    "heldout_tuning": false,
+    "semantic_claims_from_automated_metrics": false
+  }
+}

@@ -1,0 +1,43 @@
+*** PAGE 1 ***
+  compared with 79.73% for both EN and MIX. The main language-
+  20.00% for EN and 16.67% for MIX. Retrieval Hit@𝑘 differences
+  I. Introduction
+  three separately reported measurement levels (Fig. 1):
+  II. Related Work
+*** PAGE 2 ***
+  Fig. 1. Evaluated pipeline. Retrieval, structured decision, and structural contract
+  III. Dataset and Scope
+  A. Source Corpus
+  B. Benchmark
+  TABLE I
+  A. Retrieval
+  B. Generation
+  C. Evaluation Boundaries
+*** PAGE 3 ***
+  D. Metrics and Statistical Analysis
+  A. Multilingual Evidence Alignment
+  TABLE II
+  TABLE III
+  B. Structured Output and Citation Control
+  C. Resource-Constrained Local Execution
+  VI. Results
+  A. Retrieval Performance
+  B. Structured Decision Performance
+*** PAGE 4 ***
+  TABLE IV
+  Fig. 2. Structured decision accuracy with 95% Wilson intervals. Accuracy
+  (Fig. 2).
+  C. False Abstention and False Answer
+  and MIX did not differ (𝑝adj =0.7905) (Fig. 3).
+  counts were three for EN, two for MY, and five for MIX. The
+  D. Contract and System Reliability
+  Fig. 3. False-abstention rate with 95% Wilson intervals. False abstention
+  E. Structural Error Patterns
+  and four for MIX. Retrieval similarity also did not separate
+*** PAGE 5 ***
+  VII. Discussion
+  VIII. Limitations
+  IX. Ethical and Reproducibility Considerations
+  X. Conclusion
+*** PAGE 6 ***
+  [2] L. Wang, N. Yang, X. Huang, L. Yang, R. Majumder, and F. Wei, “Mul-

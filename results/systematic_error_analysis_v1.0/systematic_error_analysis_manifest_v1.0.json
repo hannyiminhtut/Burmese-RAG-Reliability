@@ -1,0 +1,42 @@
+{
+  "analysis_version": "systematic-structural-error-analysis-v1.0",
+  "run_id": "uit-ollama-heldout-v1.1-20260819-03",
+  "protocol_freeze_id": "UIT-SYSTEMATIC-ERROR-ANALYSIS-PROTOCOL-FREEZE-v1.0",
+  "population": {
+    "records": 222,
+    "semantic_intents": 74,
+    "development_records": 0,
+    "answerable": 180,
+    "unanswerable": 42
+  },
+  "inputs": {
+    "run_freeze": "06dfffaac75d8498f6e772f04df1e15ea62638745e576c9e7049ea4c8a5b3e7b",
+    "generation_jsonl": "651fa95d03c5dfec69251c95afea3132b2628495b692ea96e8961d85371ce67a",
+    "retrieval_csv": "6f5e899f0fe44825a12c47d48115342676470df1c8240d04cc8d2c190dd710d6",
+    "protocol_freeze": "62c1827f080d3dad70bfae247fbc58a7fee4580ab0a8820b8cc00a01f8c5fde0"
+  },
+  "outputs": {
+    "results_json": {
+      "path": "results\\systematic_error_analysis_v1.0\\systematic_error_analysis_v1.0.json",
+      "sha256": "93c1c26a4b335ef34e84e9d6b614cf771b9a7563b7f832dac9933464005da056"
+    },
+    "inventory_csv": {
+      "path": "results\\systematic_error_analysis_v1.0\\structural_error_inventory_v1.0.csv",
+      "sha256": "04c1d1bc03df527451daf2a27738347e790d0688efd494138658599f0a2b0568"
+    },
+    "counts_csv": {
+      "path": "results\\systematic_error_analysis_v1.0\\structural_error_counts_v1.0.csv",
+      "sha256": "4b3a357188e8203f2f5894e2d4fa6c31f40f33d1fd081ca5a3d3dc473b16a6b7"
+    },
+    "contingency_csv": {
+      "path": "results\\systematic_error_analysis_v1.0\\retrieval_decision_contingency_v1.0.csv",
+      "sha256": "5fb66dc6ee3a7ed831f6409d995915c1627eda2190ae227b0d178f8f0ea5c73e"
+    },
+    "disagreements_csv": {
+      "path": "results\\systematic_error_analysis_v1.0\\paired_language_disagreements_v1.0.csv",
+      "sha256": "500c1af4dc3095a4a44097abf65814dcb4f3dfd047831b27c32f047b38559a89"
+    }
+  },
+  "semantic_measures": "NOT_EVALUATED",
+  "created_at": "2026-08-20T15:43:29.045255+00:00"
+}

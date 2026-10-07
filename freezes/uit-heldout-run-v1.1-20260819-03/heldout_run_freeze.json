@@ -1,0 +1,86 @@
+{
+  "run_freeze_id": "UIT-HELDOUT-RUN-FREEZE-v1.1-20260819-03",
+  "frozen_at": "2026-08-20T14:25:11.0507253Z",
+  "status": "immutable_heldout_output",
+  "purpose": "Freeze the sole completed held-out generation run selected for semantic evaluation and reporting.",
+  "run_id": "uit-ollama-heldout-v1.1-20260819-03",
+  "experiment_freeze": {
+    "freeze_id": "UIT-RAG-FREEZE-v1.1-20260819",
+    "path": "freezes/uit-rag-freeze-v1.1-20260819/experiment_freeze.json",
+    "sha256_at_generation": "89534ff6371d5e5fa6281564ab570a7fb897b68d972db44db70e98f5367e9841",
+    "sha256_verified_at_output_freeze": "89534ff6371d5e5fa6281564ab570a7fb897b68d972db44db70e98f5367e9841",
+    "hash_match": true
+  },
+  "artifacts": {
+    "jsonl": {
+      "path": "results/heldout_generation/uit-ollama-heldout-v1.1-20260819-03/uit-ollama-heldout-v1.1-20260819-03.jsonl",
+      "size_bytes": 3126509,
+      "sha256": "651fa95d03c5dfec69251c95afea3132b2628495b692ea96e8961d85371ce67a"
+    },
+    "csv_summary": {
+      "path": "results/heldout_generation/uit-ollama-heldout-v1.1-20260819-03/uit-ollama-heldout-v1.1-20260819-03_summary.csv",
+      "size_bytes": 2885396,
+      "sha256": "9470b76a70ef650fb9c2159d0724253a0b98d04d229c5a76b8a083bae4c1a3a6"
+    },
+    "run_manifest": {
+      "path": "results/heldout_generation/uit-ollama-heldout-v1.1-20260819-03/uit-ollama-heldout-v1.1-20260819-03_manifest.json",
+      "size_bytes": 3277,
+      "sha256": "661271ab4d10846645783894896668731eb3f311bb4e87c134ec399ca0b72a74"
+    }
+  },
+  "frozen_inputs": {
+    "benchmark": {
+      "path": "data/evaluation/question_benchmark.csv",
+      "sha256": "563e57d818306a042730d0562d50c813d1e0dfa00b9ca773db9145ceb11aecd7"
+    },
+    "heldout_top5_retrieval": {
+      "path": "results/heldout_retrieval_results_v1.1.csv",
+      "sha256": "6f5e899f0fe44825a12c47d48115342676470df1c8240d04cc8d2c190dd710d6"
+    }
+  },
+  "validated_structure": {
+    "jsonl_records": 222,
+    "csv_records": 222,
+    "unique_variant_ids": 222,
+    "heldout_split_records": 222,
+    "development_records": 0,
+    "development_intent_overlap": 0,
+    "semantic_intents": 74,
+    "language_counts": {
+      "EN": 74,
+      "MY": 74,
+      "MIX": 74
+    },
+    "answerability_counts": {
+      "answerable": 180,
+      "unanswerable": 42
+    }
+  },
+  "observed_run_outcomes": {
+    "completed_records": 222,
+    "contract_valid_records": 212,
+    "validation_failure_records": 10,
+    "decisions": {
+      "ANSWER": 141,
+      "ABSTAIN": 81
+    },
+    "error_status": {
+      "ok": 212,
+      "ValueError": 10
+    }
+  },
+  "interpretation_rules": [
+    "Run status complete means all 222 held-out records were processed; it does not mean every output passed validation or semantic evaluation.",
+    "The ten validation failures are frozen model outcomes and must not be regenerated, corrected, removed, or treated as missing data.",
+    "No semantic correctness, groundedness, hallucination, or claim-level citation-support result is asserted by this freeze.",
+    "Semantic evaluation must use these exact generated outputs and each record's frozen Top-5 evidence.",
+    "Development runs and failed held-out attempt uit-ollama-heldout-v1.1-20260819-02 are excluded from held-out outcome analysis."
+  ],
+  "immutability_policy": {
+    "modify_artifacts": false,
+    "regenerate_records": false,
+    "replace_validation_failures": false,
+    "resume_completed_run": false,
+    "permitted_next_step": "Create a separate versioned semantic-annotation protocol and annotation package referencing this run-freeze ID."
+  }
+}

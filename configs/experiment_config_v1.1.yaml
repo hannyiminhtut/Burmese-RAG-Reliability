@@ -1,0 +1,63 @@
+experiment_id: UIT-RAG-CHUNKING-v1.1
+baseline_reference: UIT-RAG-BASELINE-v1
+
+corpus:
+  corpus_id: UIT-AC
+  corpus_version: UIT-AC-v1.1
+  source_id: UIT-SRC-025
+
+  retrieval_file: data/processed/academic_credits_retrieval_chunks_v1.1.jsonl
+
+  expected_chunk_count: 148
+  expected_first_chunk_id: UIT-AC-v1.1-CH-001
+  expected_last_chunk_id: UIT-AC-v1.1-CH-148
+  chunk_id_prefix: UIT-AC-v1.1-CH-
+
+  minimum_page: 4
+  maximum_page: 24
+
+  input_sha256: ac47c4bb65c8888b2955e58de27e587557d079aa21122f91581ce07758e8b899
+
+benchmark:
+  file: data/evaluation/question_benchmark.csv
+  total_questions: 237
+  semantic_intents: 79
+
+  language_conditions:
+    - EN
+    - MY
+    - MIX
+
+  answerable_questions: 189
+  unanswerable_questions: 48
+
+retrieval:
+  type: dense
+  embedding_model: intfloat/multilingual-e5-small
+  similarity_metric: cosine
+  normalize_embeddings: true
+  document_prefix: "passage: "
+  query_prefix: "query: "
+
+  top_k:
+    - 1
+    - 3
+    - 5
+
+index:
+  index_file: models/uit_academic_credits_v1_1.faiss
+  metadata_file: models/uit_academic_credits_v1_1_metadata.json
+  manifest_file: models/uit_academic_credits_v1_1_manifest.json
+
+generation:
+  temperature: 0
+  citation_required: true
+  abstain_when_evidence_is_insufficient: true
+
+language_policy:
+  EN: English
+  MY: Burmese
+  MIX: Burmese-English
+
+reproducibility:
+  random_seed: 42

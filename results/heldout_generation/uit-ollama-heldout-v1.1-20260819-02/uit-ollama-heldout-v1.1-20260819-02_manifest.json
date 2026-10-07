@@ -1,0 +1,68 @@
+{
+  "run_id": "uit-ollama-heldout-v1.1-20260819-02",
+  "freeze_id": "UIT-RAG-FREEZE-v1.1-20260819",
+  "freeze_manifest": "D:\\Projects\\Burmese-RAG-Reliability\\freezes\\uit-rag-freeze-v1.1-20260819\\experiment_freeze.json",
+  "freeze_manifest_sha256": "89534ff6371d5e5fa6281564ab570a7fb897b68d972db44db70e98f5367e9841",
+  "prompt_version": "uit-context-only-json-v3",
+  "parser_version": "uit-citation-object-parser-v3",
+  "resource_profile_version": "uit-cpu-safe-v1",
+  "ollama_version": "0.32.13",
+  "ollama_model": "gemma3:4b-it-q4_K_M",
+  "ollama_digest_verification": {
+    "ollama_version": "0.32.13",
+    "model_name": "gemma3:4b-it-q4_K_M",
+    "raw_api_digest": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+    "frozen_digest": "sha256:a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+    "canonical_installed_digest": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+    "canonical_frozen_digest": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+    "digest_match": true
+  },
+  "settings": {
+    "temperature": 0,
+    "top_p": 0.9,
+    "top_k": 40,
+    "seed": 42,
+    "num_ctx": 4096,
+    "num_predict": 512
+  },
+  "max_infrastructure_attempts": 2,
+  "created_at": "2026-08-19T13:07:23.602146Z",
+  "heldout_question_count": 222,
+  "development_question_count": 0,
+  "status": "in_progress",
+  "output_paths": {
+    "jsonl": "D:\\Projects\\Burmese-RAG-Reliability\\results\\heldout_generation\\uit-ollama-heldout-v1.1-20260819-02\\uit-ollama-heldout-v1.1-20260819-02.jsonl",
+    "csv_summary": "D:\\Projects\\Burmese-RAG-Reliability\\results\\heldout_generation\\uit-ollama-heldout-v1.1-20260819-02\\uit-ollama-heldout-v1.1-20260819-02_summary.csv",
+    "manifest": "D:\\Projects\\Burmese-RAG-Reliability\\results\\heldout_generation\\uit-ollama-heldout-v1.1-20260819-02\\uit-ollama-heldout-v1.1-20260819-02_manifest.json"
+  },
+  "checkpoint": {
+    "completed_records": 6,
+    "decisions": {
+      "ERROR": 5,
+      "ANSWER": 1
+    },
+    "errors": {
+      "OllamaModelError": 5
+    },
+    "by_language": {
+      "EN": {
+        "ERROR": 2
+      },
+      "MY": {
+        "ERROR": 2
+      },
+      "MIX": {
+        "ERROR": 1,
+        "ANSWER": 1
+      }
+    },
+    "by_answerability": {
+      "answerable": {
+        "ERROR": 5,
+        "ANSWER": 1
+      },
+      "unanswerable": {}
+    }
+  },
+  "updated_at": "2026-08-19T13:13:59.837070Z"
+}

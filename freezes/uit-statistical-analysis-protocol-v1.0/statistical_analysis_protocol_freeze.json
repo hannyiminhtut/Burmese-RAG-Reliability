@@ -1,0 +1,47 @@
+{
+  "protocol_freeze_id": "UIT-STATISTICAL-ANALYSIS-PROTOCOL-FREEZE-v1.0",
+  "frozen_at": "2026-08-20T17:00:00+06:30",
+  "status": "immutable_before_statistical_analysis",
+  "protocol": {
+    "version": "statistical-analysis-protocol-v1.0",
+    "path": "docs/statistical_analysis_protocol_v1.0.md",
+    "size_bytes": 3676,
+    "sha256": "beb39a6b876203771cdad7da42deedeb1ae05e6cf027ab61702f2a64c1d9d5cb"
+  },
+  "source_freezes": {
+    "heldout_run": {
+      "path": "freezes/uit-heldout-run-v1.1-20260819-03/heldout_run_freeze.json",
+      "sha256": "06dfffaac75d8498f6e772f04df1e15ea62638745e576c9e7049ea4c8a5b3e7b"
+    },
+    "semantic_evaluation_waiver": {
+      "path": "freezes/uit-semantic-evaluation-waiver-v1.0/semantic_evaluation_waiver_freeze.json",
+      "sha256": "251cfb78eb94748f274d78967c2332546ea6e4debad201f636e6b2a2b5890136"
+    },
+    "automated_heldout_analysis": {
+      "path": "freezes/uit-automated-heldout-analysis-v1.0/automated_heldout_analysis_freeze.json",
+      "sha256": "831e46d317924d2a36f337e46df95034fb7e50654edfaad7cc808075502977e2"
+    }
+  },
+  "paired_design": {
+    "semantic_intents": 74,
+    "conditions": ["EN", "MY", "MIX"],
+    "all_intent_pairs": 74,
+    "answerable_pairs": 60,
+    "unanswerable_pairs": 14,
+    "independent_variant_assumption": false
+  },
+  "tests": {
+    "confidence_interval": "two-sided 95% Wilson score interval",
+    "omnibus": "Cochran's Q",
+    "pairwise": "two-sided exact McNemar",
+    "multiple_comparison": "Holm within each outcome",
+    "alpha": 0.05
+  },
+  "prohibited": [
+    "semantic_proxy_labels",
+    "independent-samples_language_tests",
+    "post_hoc_outcome_redefinition",
+    "heldout_tuning",
+    "claims_about_semantic_correctness_or_hallucination"
+  ]
+}

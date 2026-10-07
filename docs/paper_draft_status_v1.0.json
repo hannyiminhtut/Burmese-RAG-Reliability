@@ -1,0 +1,80 @@
+{
+  "draft_id": "UIT-RAG-PAPER-DRAFT-v1.0",
+  "status": "technical_draft_not_submission_ready",
+  "created_at": "2026-08-20T20:00:00+06:30",
+  "manuscript": {
+    "path": "docs/paper_draft_v1.0.md",
+    "size_bytes": 21538,
+    "sha256": "a4bd40cfe83b7f45759f42d4c3a0fee4f7e50099e66be8aad94a73f583da2573",
+    "approximate_word_count": 2956,
+    "major_sections": 11,
+    "linked_frozen_figures": 4
+  },
+  "completed": [
+    "abstract",
+    "introduction",
+    "dataset_and_scope",
+    "methodology",
+    "experimental_configuration",
+    "retrieval_results",
+    "structured_decision_results",
+    "paired_statistics",
+    "contract_and_reliability",
+    "structural_error_analysis",
+    "discussion",
+    "limitations",
+    "ethics_and_reproducibility",
+    "conclusion",
+    "verified_related_work_and_bibliography"
+  ],
+  "remaining_before_submission": [
+    "place the manuscript into an official IEEE/ICAIT template without modifying the retained original",
+    "add author names, affiliations, acknowledgements, and disclosure information",
+    "perform final six-page-limit, anonymization, accessibility, and PDF checks",
+    "recheck the official ICAIT 2026 page immediately before submission",
+    "decide whether additional Burmese-specific literature is required"
+  ],
+  "title_status": {
+    "title": "Evaluating Retrieval and Abstention across Burmese, English, and Code-Mixed Queries in RAG for University Academic Regulations",
+    "revised_on": "2026-08-20",
+    "reason": "The title is aligned with the directly evaluated retrieval and structured abstention outcomes and does not imply a measured hallucination rate.",
+    "hallucination_claimed_as_measured_outcome": false
+  },
+  "semantic_evaluation": {
+    "human_review_completed": false,
+    "hallucination_rate": "NOT_EVALUATED",
+    "groundedness": "NOT_EVALUATED",
+    "semantic_answer_correctness": "NOT_EVALUATED"
+  },
+  "citation_status": {
+    "verified_references_added": 8,
+    "invented_or_placeholder_references_added": 0,
+    "related_work_ready": true,
+    "audit_path": "docs/literature_review_v1.0.md"
+  },
+  "conference_status": {
+    "verified_on": "2026-08-20",
+    "official_page": "https://uit.edu.mm/icait-2026/",
+    "official_cfp": "https://uit.edu.mm/app/uploads/2026/04/icait2026CFP.pdf",
+    "conference_date": "2026-11-05",
+    "submission_deadline": "2026-08-30",
+    "acceptance_notification": "2026-09-30",
+    "camera_ready_deadline": "2026-10-15",
+    "maximum_pages": 6,
+    "layout": "two-column",
+    "submission_email": "icait@uit.edu.mm",
+    "track_fit": "Artificial Intelligence and Data Science / Natural Language Processing",
+    "requirements_must_be_rechecked_before_submission": true
+  },
+  "template_status": {
+    "official_template_found_in_repository": false,
+    "existing_template_modified": false,
+    "current_format": "Markdown technical manuscript"
+  },
+  "validation": {
+    "complete_test_suite": "78 passed, 3 dependency deprecation warnings",
+    "frozen_numbers_reconciled": true,
+    "development_records_included": 0,
+    "unsupported_semantic_findings_claimed": false
+  }
+}

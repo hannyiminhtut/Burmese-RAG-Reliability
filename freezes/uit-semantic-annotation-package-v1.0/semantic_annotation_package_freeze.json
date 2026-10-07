@@ -1,0 +1,94 @@
+{
+  "package_freeze_id": "UIT-SEMANTIC-ANNOTATION-PACKAGE-FREEZE-v1.0",
+  "frozen_at": "2026-08-20T15:10:00+06:30",
+  "status": "immutable_unannotated_templates",
+  "package_version": "semantic-annotation-package-v1.0",
+  "source_run": {
+    "run_id": "uit-ollama-heldout-v1.1-20260819-03",
+    "run_freeze_path": "freezes/uit-heldout-run-v1.1-20260819-03/heldout_run_freeze.json",
+    "run_freeze_sha256": "06dfffaac75d8498f6e772f04df1e15ea62638745e576c9e7049ea4c8a5b3e7b"
+  },
+  "annotation_protocol": {
+    "protocol_freeze_id": "UIT-SEMANTIC-ANNOTATION-PROTOCOL-FREEZE-v1.0",
+    "protocol_freeze_path": "freezes/uit-semantic-annotation-protocol-v1.0/semantic_annotation_protocol_freeze.json",
+    "protocol_freeze_sha256": "c61d9fdba3a45e82f9e879416d8808893bff34cde58d4bc49e5f5342b4daff0f",
+    "protocol_path": "docs/semantic_annotation_protocol_v1.0.md",
+    "protocol_sha256": "4f5deb7b2cd02176de73e6e3940c56d4c842a8696362f2d925570cc0f9ad9357"
+  },
+  "population": {
+    "heldout_records": 222,
+    "development_records": 0,
+    "answerable_records": 180,
+    "unanswerable_records": 42,
+    "language_counts": {
+      "EN": 74,
+      "MY": 74,
+      "MIX": 74
+    }
+  },
+  "blinding": {
+    "random_seed": 20260820,
+    "randomization_method": "Python random.Random(seed).shuffle over frozen JSONL record order",
+    "annotation_id_range": "UIT-ANN-001 through UIT-ANN-222",
+    "reviewer_files_hide": [
+      "intent_id",
+      "variant_id",
+      "run_id",
+      "model identity",
+      "retrieval scores",
+      "aggregate performance",
+      "other language-variant identities"
+    ],
+    "key_access": "restricted from reviewers until independent annotation and agreement measurement are complete"
+  },
+  "artifacts": {
+    "reviewer_1_template": {
+      "path": "data/evaluation/semantic_annotation_v1.0/reviewer_1_annotation.csv",
+      "rows": 222,
+      "columns": 43,
+      "size_bytes": 878044,
+      "sha256": "7bc72de5584017933a3d91e712eca2a9a4de58deb1c38792bfc4d858d716e113"
+    },
+    "reviewer_2_template": {
+      "path": "data/evaluation/semantic_annotation_v1.0/reviewer_2_annotation.csv",
+      "rows": 222,
+      "columns": 43,
+      "size_bytes": 878044,
+      "sha256": "7bc72de5584017933a3d91e712eca2a9a4de58deb1c38792bfc4d858d716e113"
+    },
+    "blinded_id_key": {
+      "path": "data/evaluation/semantic_annotation_v1.0/blinded_id_key.csv",
+      "rows": 222,
+      "columns": 5,
+      "size_bytes": 14459,
+      "sha256": "cf5334d07dec7a7d0d5b3632e70016cf07fa9bcecdc332f7d693812fee0b9427"
+    },
+    "instructions": {
+      "path": "data/evaluation/semantic_annotation_v1.0/README.md",
+      "size_bytes": 2401,
+      "sha256": "11cb6e86721089491355753f8f940fd333c06524bd7a6bf589313b56605e9b38"
+    },
+    "builder": {
+      "path": "src/build_annotation_package.py",
+      "size_bytes": 6356,
+      "sha256": "a7396ab42e7a4f045289656fbee4f0b152020c07ddbd26a326fefce5c56c8f8c"
+    }
+  },
+  "integrity_assertions": {
+    "unique_annotation_ids": 222,
+    "reviewer_templates_source_equal": true,
+    "semantic_labels_assigned": 0,
+    "top5_evidence_preserved_in_rank_order": true,
+    "utf8_bom_csv": true,
+    "frozen_source_columns_editable": false,
+    "annotation_columns_editable_only_in_working_copies": true
+  },
+  "immutability_policy": {
+    "template_artifact_hashes_are_baselines": true,
+    "annotate_original_templates": false,
+    "create_per_reviewer_working_copies": true,
+    "modify_blinded_key": false,
+    "modify_frozen_run_or_protocol": false,
+    "assign_labels_during_package_construction": false
+  }
+}

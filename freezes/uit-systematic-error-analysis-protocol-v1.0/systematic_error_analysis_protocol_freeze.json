@@ -1,0 +1,32 @@
+{
+  "protocol_freeze_id": "UIT-SYSTEMATIC-ERROR-ANALYSIS-PROTOCOL-FREEZE-v1.0",
+  "frozen_at": "2026-08-20T18:00:00+06:30",
+  "status": "immutable_before_error_analysis",
+  "protocol": {
+    "version": "systematic-error-analysis-protocol-v1.0",
+    "path": "docs/systematic_error_analysis_protocol_v1.0.md",
+    "size_bytes": 2662,
+    "sha256": "84171e9844fa5d595cd8b4f2dc400ce19cd9d5915f7d23250ec42d09836672b9"
+  },
+  "source_freezes": {
+    "heldout_run": {
+      "path": "freezes/uit-heldout-run-v1.1-20260819-03/heldout_run_freeze.json",
+      "sha256": "06dfffaac75d8498f6e772f04df1e15ea62638745e576c9e7049ea4c8a5b3e7b"
+    },
+    "automated_analysis": {
+      "path": "freezes/uit-automated-heldout-analysis-v1.0/automated_heldout_analysis_freeze.json",
+      "sha256": "831e46d317924d2a36f337e46df95034fb7e50654edfaad7cc808075502977e2"
+    },
+    "paired_statistics": {
+      "path": "freezes/uit-paired-statistical-analysis-v1.0/paired_statistical_analysis_freeze.json",
+      "sha256": "b0ed6458fb2f0494cf0703c7e9bd0d93f74697f73a8c6de5dd3fe136c3f87a58"
+    }
+  },
+  "population": {
+    "heldout_variants": 222,
+    "paired_intents": 74,
+    "development_variants": 0
+  },
+  "semantic_measures": "NOT_EVALUATED",
+  "overlap_policy": "Structural flags are nonexclusive and overlap must be reported."
+}

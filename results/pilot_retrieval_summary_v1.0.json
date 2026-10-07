@@ -1,0 +1,70 @@
+{
+  "experiment_id": "UIT-RAG-BASELINE-v1",
+  "corpus_version": "UIT-AC-v1.0",
+  "embedding_model": "intfloat/multilingual-e5-small",
+  "random_seed": 42,
+  "selected_intent_count": 5,
+  "total_question_count": 15,
+  "answerable_question_count": 9,
+  "unanswerable_question_count": 6,
+  "counts_by_language_condition": {
+    "EN": 5,
+    "MY": 5,
+    "MIX": 5
+  },
+  "answerable_metrics": {
+    "Hit@1": 0.1111111111111111,
+    "Hit@3": 0.5555555555555556,
+    "Hit@5": 0.6666666666666666,
+    "MRR": 0.35555555555555557
+  },
+  "answerable_metrics_by_language": {
+    "EN": {
+      "Hit@1": 0.3333333333333333,
+      "Hit@3": 0.6666666666666666,
+      "Hit@5": 0.6666666666666666,
+      "MRR": 0.5
+    },
+    "MY": {
+      "Hit@1": 0.0,
+      "Hit@3": 0.6666666666666666,
+      "Hit@5": 0.6666666666666666,
+      "MRR": 0.3333333333333333
+    },
+    "MIX": {
+      "Hit@1": 0.0,
+      "Hit@3": 0.3333333333333333,
+      "Hit@5": 0.6666666666666666,
+      "MRR": 0.2333333333333333
+    }
+  },
+  "top1_similarity_scores": {
+    "overall": {
+      "mean": 0.8334354956944784,
+      "median": 0.8386691212654114
+    },
+    "answerable": {
+      "mean": 0.8288892640007867,
+      "median": 0.8386691212654114
+    },
+    "unanswerable": {
+      "mean": 0.8402548432350159,
+      "median": 0.8445459306240082
+    },
+    "EN": {
+      "mean": 0.8043964147567749,
+      "median": 0.8040770292282104
+    },
+    "MY": {
+      "mean": 0.8506199598312378,
+      "median": 0.8519423604011536
+    },
+    "MIX": {
+      "mean": 0.8452901124954224,
+      "median": 0.843845784664154
+    }
+  },
+  "error_count": 0,
+  "skipped_row_count": 0,
+  "creation_timestamp": "2026-08-16T12:25:26.905947Z"
+}

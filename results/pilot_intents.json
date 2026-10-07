@@ -1,0 +1,20 @@
+{
+  "random_seed": 42,
+  "selection_method": "random.Random(seed) sampling from sorted intent IDs: 3 answerable and 2 unanswerable intents without replacement",
+  "answerable_intent_ids": [
+    "Q057",
+    "Q008",
+    "Q002"
+  ],
+  "unanswerable_intent_ids": [
+    "Q029",
+    "Q024"
+  ],
+  "selected_intent_ids": [
+    "Q057",
+    "Q008",
+    "Q002",
+    "Q029",
+    "Q024"
+  ]
+}

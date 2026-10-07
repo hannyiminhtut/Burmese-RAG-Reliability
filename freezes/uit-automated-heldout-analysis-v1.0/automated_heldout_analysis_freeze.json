@@ -1,0 +1,65 @@
+{
+  "analysis_freeze_id": "UIT-AUTOMATED-HELDOUT-ANALYSIS-FREEZE-v1.0",
+  "frozen_at": "2026-08-20T16:20:00+06:30",
+  "status": "immutable_automated_non_semantic_results",
+  "analysis_version": "automated-non-semantic-heldout-v1.0",
+  "source_freezes": {
+    "heldout_run": {
+      "path": "freezes/uit-heldout-run-v1.1-20260819-03/heldout_run_freeze.json",
+      "sha256": "06dfffaac75d8498f6e772f04df1e15ea62638745e576c9e7049ea4c8a5b3e7b"
+    },
+    "semantic_evaluation_waiver": {
+      "path": "freezes/uit-semantic-evaluation-waiver-v1.0/semantic_evaluation_waiver_freeze.json",
+      "sha256": "251cfb78eb94748f274d78967c2332546ea6e4debad201f636e6b2a2b5890136"
+    }
+  },
+  "implementation": {
+    "path": "src/analyze_heldout_automated.py",
+    "size_bytes": 15220,
+    "sha256": "644bea1ffa621431e6df4c43b58e41050665c1d03898dab23a267c4a62f414ca"
+  },
+  "test": {
+    "path": "tests/test_analyze_heldout_automated.py",
+    "size_bytes": 3472,
+    "sha256": "221c13ef9f2c58390e2ee5472e7e8eece258a8a38b11bb9fd18eb5b2040fb69a",
+    "complete_suite": "59 passed, 3 dependency deprecation warnings"
+  },
+  "artifacts": {
+    "metrics_json": {
+      "path": "results/automated_evaluation_v1.0/heldout_automated_metrics_v1.0.json",
+      "size_bytes": 7670,
+      "sha256": "085a2c592738fd04c0a024bc24bf9c3d97793c20ccfaacefae641b0d6dc127d8"
+    },
+    "paper_table_csv": {
+      "path": "results/automated_evaluation_v1.0/heldout_automated_metrics_v1.0.csv",
+      "size_bytes": 2685,
+      "sha256": "a917c32c902d257d877b3a03a511e98b51c1f97b552765de7eeefc326d0e5cea"
+    },
+    "analysis_manifest": {
+      "path": "results/automated_evaluation_v1.0/heldout_automated_analysis_manifest_v1.0.json",
+      "size_bytes": 1667,
+      "sha256": "3542ed27321fefbe10238d523acf10cb51e909ab7c26024b05bdd5fc2a69867e"
+    }
+  },
+  "validated_population": {
+    "heldout_records": 222,
+    "semantic_intents": 74,
+    "development_records": 0,
+    "answerable": 180,
+    "unanswerable": 42,
+    "EN": 74,
+    "MY": 74,
+    "MIX": 74
+  },
+  "semantic_evaluation": {
+    "human_annotation_performed": false,
+    "proxy_reviewer_labels_created": false,
+    "human_dependent_metrics": "NOT_EVALUATED"
+  },
+  "immutability_policy": {
+    "modify_frozen_results": false,
+    "reinterpret_contract_validity_as_semantic_correctness": false,
+    "calculate_inter_rater_agreement": false,
+    "tune_experiment_from_heldout_results": false
+  }
+}

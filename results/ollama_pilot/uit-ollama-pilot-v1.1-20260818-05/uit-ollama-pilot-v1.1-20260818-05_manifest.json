@@ -1,0 +1,172 @@
+{
+  "run_id": "uit-ollama-pilot-v1.1-20260818-05",
+  "model": "gemma3:4b-it-q4_K_M",
+  "ollama_version": "0.32.13",
+  "base_url": "http://localhost:11434",
+  "prompt_version": "uit-context-only-json-v3",
+  "parser_version": "uit-citation-object-parser-v3",
+  "output_format": "explicit_json_schema",
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "decision": {
+        "type": "string",
+        "enum": [
+          "ANSWER",
+          "ABSTAIN"
+        ]
+      },
+      "answer": {
+        "type": "string"
+      },
+      "citations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "chunk_id": {
+              "type": "string"
+            },
+            "page": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "chunk_id",
+            "page"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "decision",
+      "answer",
+      "citations"
+    ],
+    "additionalProperties": false
+  },
+  "abstention_response": "The provided academic regulations do not contain sufficient information to answer the question.",
+  "settings": {
+    "temperature": 0,
+    "top_p": 0.9,
+    "top_k": 40,
+    "seed": 42,
+    "num_ctx": 4096,
+    "num_predict": 512
+  },
+  "resource_profile_version": "uit-cpu-safe-v1",
+  "resource_profile": {
+    "cpu_only": true,
+    "sequential_requests": true,
+    "max_infrastructure_attempts": 2,
+    "retry_cooldown_seconds": 5.0,
+    "required_ollama_environment": {
+      "OLLAMA_NUM_PARALLEL": "1",
+      "OLLAMA_MAX_LOADED_MODELS": "1"
+    },
+    "prompt_token_estimator": "ceil((UTF-8 byte length / 4) * 1.10); calibrated heuristic, not model-tokenizer exact",
+    "prompt_token_estimates": {
+      "Q002-EN": 1127,
+      "Q002-MY": 1140,
+      "Q002-MIX": 1170,
+      "Q008-EN": 979,
+      "Q008-MY": 1259,
+      "Q008-MIX": 1463,
+      "Q024-EN": 1407,
+      "Q024-MY": 1592,
+      "Q024-MIX": 1440,
+      "Q029-EN": 1529,
+      "Q029-MY": 1537,
+      "Q029-MIX": 1563,
+      "Q057-EN": 911,
+      "Q057-MY": 1433,
+      "Q057-MIX": 1662
+    },
+    "estimated_minimum": 911,
+    "estimated_maximum": 1662,
+    "estimated_mean": 1347.4666666666667,
+    "safety_margin_tokens": 1024,
+    "required_context_capacity": 3198
+  },
+  "created_at": "2026-08-18T16:34:06.599322Z",
+  "input_hashes": {
+    "config_sha256": "2be841e41e7cbe79f39f83f4d74e64236feb447f990a424b4e9bd7abde616b79",
+    "benchmark_sha256": "563e57d818306a042730d0562d50c813d1e0dfa00b9ca773db9145ceb11aecd7",
+    "pilot_intents_sha256": "a3437e7724ec6529be6ff4fb4a71e1154356f4ae48b8f2802c428ac8fdb12c0c",
+    "retrieval_results_sha256": "eb1853d8131564606f82c92edbfdb62b45242b72edb637847962700cbe0bcd87",
+    "metadata_sha256": "6f9d1eefa3d573b58e099203a97cae300e2dc2eefac79518f09cbe86ca28f582"
+  },
+  "development_question_count": 15,
+  "heldout_question_count": 0,
+  "output_paths": {
+    "jsonl": "D:\\Projects\\Burmese-RAG-Reliability\\results\\ollama_pilot\\uit-ollama-pilot-v1.1-20260818-05\\uit-ollama-pilot-v1.1-20260818-05.jsonl",
+    "csv_summary": "D:\\Projects\\Burmese-RAG-Reliability\\results\\ollama_pilot\\uit-ollama-pilot-v1.1-20260818-05\\uit-ollama-pilot-v1.1-20260818-05_summary.csv",
+    "manifest": "D:\\Projects\\Burmese-RAG-Reliability\\results\\ollama_pilot\\uit-ollama-pilot-v1.1-20260818-05\\uit-ollama-pilot-v1.1-20260818-05_manifest.json"
+  },
+  "status": "complete",
+  "checkpoint": {
+    "completed_records": 15,
+    "decisions": {
+      "ANSWER": 7,
+      "ABSTAIN": 8
+    },
+    "errors": {},
+    "by_language": {
+      "EN": {
+        "ANSWER": 2,
+        "ABSTAIN": 3
+      },
+      "MY": {
+        "ANSWER": 3,
+        "ABSTAIN": 2
+      },
+      "MIX": {
+        "ANSWER": 2,
+        "ABSTAIN": 3
+      }
+    },
+    "by_answerability": {
+      "answerable": {
+        "ANSWER": 7,
+        "ABSTAIN": 2
+      },
+      "unanswerable": {
+        "ABSTAIN": 6
+      }
+    }
+  },
+  "updated_at": "2026-08-18T16:48:31.495899Z",
+  "completed_at": "2026-08-18T16:48:31.495899Z",
+  "pilot_summary": {
+    "completed_records": 15,
+    "decisions": {
+      "ANSWER": 7,
+      "ABSTAIN": 8
+    },
+    "errors": {},
+    "by_language": {
+      "EN": {
+        "ANSWER": 2,
+        "ABSTAIN": 3
+      },
+      "MY": {
+        "ANSWER": 3,
+        "ABSTAIN": 2
+      },
+      "MIX": {
+        "ANSWER": 2,
+        "ABSTAIN": 3
+      }
+    },
+    "by_answerability": {
+      "answerable": {
+        "ANSWER": 7,
+        "ABSTAIN": 2
+      },
+      "unanswerable": {
+        "ABSTAIN": 6
+      }
+    }
+  }
+}

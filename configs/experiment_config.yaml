@@ -1,0 +1,50 @@
+experiment_id: UIT-RAG-BASELINE-v1
+
+corpus:
+  corpus_id: UIT-AC
+  corpus_version: UIT-AC-v1.0
+  master_file: data/processed/academic_credits_chunks.jsonl
+  retrieval_file: data/processed/academic_credits_retrieval_chunks.jsonl
+  source_id: UIT-SRC-025
+  total_master_chunks: 25
+  retrieval_chunk_count: 22
+  excluded_chunks:
+    - UIT-AC-CH-001
+    - UIT-AC-CH-002
+    - UIT-AC-CH-003
+
+benchmark:
+  file: data/evaluation/question_benchmark.csv
+  total_questions: 237
+  semantic_intents: 79
+  language_conditions:
+    - EN
+    - MY
+    - MIX
+  answerable_questions: 189
+  unanswerable_questions: 48
+
+retrieval:
+  type: dense
+  embedding_model: intfloat/multilingual-e5-small
+  similarity_metric: cosine
+  normalize_embeddings: true
+  document_prefix: "passage: "
+  query_prefix: "query: "
+  top_k:
+    - 1
+    - 3
+    - 5
+
+generation:
+  temperature: 0
+  citation_required: true
+  abstain_when_evidence_is_insufficient: true
+
+language_policy:
+  EN: English
+  MY: Burmese
+  MIX: Burmese-English
+
+reproducibility:
+  random_seed: 42

@@ -1,0 +1,14 @@
+{
+  "experiment_id": "UIT-RAG-BASELINE-v1",
+  "corpus_version": "UIT-AC-v1.0",
+  "embedding_model": "intfloat/multilingual-e5-small",
+  "similarity_metric": "cosine",
+  "vector_dimension": 384,
+  "chunk_count": 22,
+  "creation_timestamp": "2026-08-16T12:14:29.679312Z",
+  "input_filename": "academic_credits_retrieval_chunks.jsonl",
+  "input_sha256": "f1a9bcce7190f97ffebba74e8e7ce4a519ea150bf322d8c58f0522e1fa80a4b4",
+  "index_filename": "uit_academic_credits_v1.faiss",
+  "metadata_filename": "uit_academic_credits_v1_metadata.json",
+  "random_seed": 42
+}

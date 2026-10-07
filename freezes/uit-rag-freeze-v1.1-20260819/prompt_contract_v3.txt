@@ -1,0 +1,12 @@
+PROMPT_VERSION: uit-context-only-json-v3
+
+The runtime prompt is produced by src.generate_pilot.build_prompt. It requires:
+- context-only answering from exactly five supplied evidence blocks;
+- language-conditioned ANSWER text for EN, MY, and MIX;
+- the exact configured English deterministic response for ABSTAIN;
+- no ABSTAIN explanation, prefix, suffix, translation, or citation;
+- citation objects with inseparable chunk_id and integer page values copied from one evidence block;
+- one JSON object conforming to the frozen explicit Ollama JSON schema;
+- evidence rendered as EVIDENCE_1 through EVIDENCE_5 blocks containing chunk_id, page, and text.
+
+The experiment-freeze manifest records the SHA-256 of this contract and the SHA-256 of the actual Python build_prompt implementation. Both must verify before held-out generation.
